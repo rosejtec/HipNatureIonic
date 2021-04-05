@@ -8,8 +8,9 @@ export class Customer {
   email: string | undefined
   password: string | undefined
   username: string | undefined
+  address: string | undefined
 
-  constructor( customerId?: number, customerName?: string, phone?: string,customerTypeEnum?: CustomerTypeEnum, email?: string, password?: string, username?: string) {
+  constructor( customerId?: number, customerName?: string, phone?: string,customerTypeEnum?: CustomerTypeEnum, email?: string, password?: string, username?: string, address?: string) {
     this.customerTypeEnum = customerTypeEnum
     this.customerName = customerName
     this.customerId = customerId
@@ -17,6 +18,7 @@ export class Customer {
     this.email = email
     this.username = username
     this.password = password
+    this.address = address
   }
 }
 

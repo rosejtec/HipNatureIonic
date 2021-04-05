@@ -28,7 +28,7 @@ export class AppComponent {
 	}
 
 
-	ngOnInit() {
+	ngOnChanges() {
 		
 	}
 }

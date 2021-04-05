@@ -1,9 +1,87 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <p style="text-align: center;">
+    <b>New User? Register An Account Today!</b>
+  </p>
+  <form #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
+    <ion-card>
+      <ion-card-content>
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
 
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              Name
+            </ion-label>
+            <ion-input type="text" id="customerName" name="customerName" [(ngModel)]="newCustomer.customerName"
+              #customerName="ngModel" required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Phone Number
+            </ion-label>
+            <ion-input type="text" id="phone" name="phone" [(ngModel)]="newCustomer.phone" #phone="ngModel"
+              required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Email
+            </ion-label>
+            <ion-input type="text" id="email" name="email" [(ngModel)]="newCustomer.email" #email="ngModel"
+              required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+          <ion-label>
+            Address
+          </ion-label>
+          <ion-input type="text" id="address" name="address" [(ngModel)]="newCustomer.address" #address="ngModel"
+            required="true">
+          </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Username
+            </ion-label>
+            <ion-input type="text" id="username" name="username" [(ngModel)]="newCustomer.username" #username="ngModel"
+              required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Password
+            </ion-label>
+            <ion-input type="password" id="password" name="password" [(ngModel)]="newCustomer.password"
+              #password="ngModel" required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Type
+            </ion-label>
+            <ion-select id="customerTypeEnum" name="customerTypeEnum" [(ngModel)]="newCustomer.customerTypeEnum"
+              #customerTypeEnum="ngModel" required="true" multiple="false">
+              <ion-select-option *ngFor="let code of customerEnum" value="{{code.val}}">{{code.val}}
+
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card style="text-align: center;">
+      <ion-button (click)="clear()">
+        Clear
+      </ion-button>
+      <ion-button type = "submit" ion-button block>
+        Create
+      </ion-button>
+    </ion-card>
+  </form>
 </ion-content>

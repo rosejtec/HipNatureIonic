@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { CommonService } from './common.service';
 import { Customer } from '../models/customer';
+import {CreateNewCustomerReq} from '../models/create-new-customer-req';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,6 +31,17 @@ export class CustomerService {
     customerLogin(username: string | undefined, password: string | undefined): Observable<Customer>
     {
         return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
+        (
+            catchError(this.handleError)
+        );
+    }
+
+    createNewCustomer(newCustomer:Customer): Observable<number>{
+        console.log('customer service');
+        let createNewCustomerReq:CreateNewCustomerReq = new CreateNewCustomerReq(newCustomer);
+        console.log('customer service2');
+        console.log(this.baseUrl);
+        return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
         (
             catchError(this.handleError)
         );
