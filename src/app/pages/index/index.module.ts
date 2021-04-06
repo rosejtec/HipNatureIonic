@@ -7,14 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { IndexPageRoutingModule } from './index-routing.module';
 
 import { IndexPage } from './index.page';
+import {RegisterPage} from '../register/register.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IndexPageRoutingModule
+    IndexPageRoutingModule,
   ],
-  declarations: [IndexPage]
+  declarations: [IndexPage, RegisterPage],
 })
 export class IndexPageModule {}
