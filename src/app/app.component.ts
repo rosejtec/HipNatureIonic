@@ -20,7 +20,18 @@ export class AppComponent {
 		{ title: 'Login', url: '/login', icon: 'lock-closed' }
 	];
 
-	
+	public appPagesMyInformation = [
+		{
+			title: 'View My Booking',
+			url: "",
+			icon: 'add-circle'
+		},
+		{
+			title: 'View My Profile',
+			url: "",
+			icon: 'add-circle'
+		}
+	]
 
 	constructor(public commonService: CommonService) {
     console.log(commonService.getIsLogin())

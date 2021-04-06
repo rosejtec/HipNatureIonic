@@ -63,7 +63,7 @@ export class RegisterPage implements OnInit {
     console.log(this.newCustomer.customerTypeEnum);
     console.log(createCustomerForm.valid);
     if(createCustomerForm.valid){
-      this.customerService.createNewCustomer(this.newCustomer).subscribe(response => {
+        this.customerService.createNewCustomer(this.newCustomer).subscribe(response => {
         let newCustomerName:number = response;
         this.resultSuccess = true;
         this.resultError = false;

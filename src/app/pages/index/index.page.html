@@ -5,21 +5,22 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>      
-    <ion-card-header>        
-      <ion-card-title>Welcome to Hipnature</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-      </p>
-      <ul style="margin-left: 20px;">
-        <li>Welcome to Hipnature</li>
-      </ul>
-    </ion-card-content>
-    
-  </ion-card>
-  <app-register>
-  </app-register>
+  <ion-list>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Welcome to Hipnature</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>
+        </p>
+        <ul style="margin-left: 20px;">
+          <li>Welcome to Hipnature</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+    <app-register *ngIf="!commonService.getIsLogin()"> 
+    </app-register>
 </ion-content>
 
 <ion-footer>
