@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'index',
     loadChildren: () => import('./pages/index/index.module').then( m => m.IndexPageModule)
+  },
+  {
+    path: 'view-all-plans',
+    loadChildren: () => import('./pages/view-all-plans/view-all-plans.module').then( m => m.ViewAllPlansPageModule)
   }
 ];
 

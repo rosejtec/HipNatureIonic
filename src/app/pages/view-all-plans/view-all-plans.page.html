@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>viewAllPlans</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let p of allPlans; let i = index">
+      <ion-card-header>
+        <ion-card-title>{{p.planName}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        
+        <ion-label>Price: ${{p.price}}</ion-label>
+      <br>
+        <ion-label>Session Limit: {{p.sessionLimit}}</ion-label>
+        <br>
+
+        <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
+        <ion-item>
+          <ion-button float-right  fill="outline" slot="end">Buy</ion-button>
+        </ion-item>
+
+      </ion-card-content>
+      
+    </ion-card>    
+</ion-content>

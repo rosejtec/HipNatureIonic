@@ -22,13 +22,8 @@ export class AppComponent {
 
 	public appPagesMyInformation = [
 		{
-			title: 'View My Booking',
-			url: "",
-			icon: 'add-circle'
-		},
-		{
-			title: 'View My Profile',
-			url: "",
+			title: 'View All Plans',
+			url: "/view-all-plans",
 			icon: 'add-circle'
 		}
 	]
