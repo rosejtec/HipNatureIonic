@@ -25,6 +25,12 @@ export class AppComponent {
 			title: 'View All Plans',
 			url: "/view-all-plans",
 			icon: 'add-circle'
+		},
+
+		{
+			title: 'View All Classes',
+			url: "/view-all-classes",
+			icon: 'add-circle'
 		}
 	]
 

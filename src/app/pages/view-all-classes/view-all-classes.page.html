@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Classes </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-card *ngFor="let p of allClasses; let i = index">
+  <ion-card-header>
+    <ion-card-title>{{p.className}}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    
+    <ion-label>Credits per Class : ${{p.credit}}</ion-label>
+  <br>
+    <ion-label>Location : {{p.locationTypeEnum}}</ion-label>
+    <br>
+    
+    <ion-item>
+      <ion-button float-right  fill="outline" slot="end">View More</ion-button>
+    </ion-item>
+
+  </ion-card-content>
+  
+</ion-card>    
+<ion-content>
+
+</ion-content>

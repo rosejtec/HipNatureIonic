@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'view-all-plans',
     loadChildren: () => import('./pages/view-all-plans/view-all-plans.module').then( m => m.ViewAllPlansPageModule)
+  },
+  {
+    path: 'view-all-classes',
+    loadChildren: () => import('./pages/view-all-classes/view-all-classes.module').then( m => m.ViewAllClassesPageModule)
   }
 ];
 
