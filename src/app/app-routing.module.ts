@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'view-all-classes',
     loadChildren: () => import('./pages/view-all-classes/view-all-classes.module').then( m => m.ViewAllClassesPageModule)
+  },  {
+    path: 'view-aclass-sessions',
+    loadChildren: () => import('./pages/view-aclass-sessions/view-aclass-sessions.module').then( m => m.ViewAClassSessionsPageModule)
   }
+
 ];
 
 @NgModule({

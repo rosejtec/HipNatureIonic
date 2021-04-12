@@ -5,6 +5,9 @@ import { NgForm } from '@angular/forms';
 import { CommonService } from '../../services/common.service';
 import { ClassService } from '../../services/class.service';
 import { Class } from '../../models/class';
+
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-view-all-classes',
   templateUrl: './view-all-classes.page.html',
@@ -13,8 +16,7 @@ import { Class } from '../../models/class';
 export class ViewAllClassesPage implements OnInit {
   allClasses : Class[];
 
-
-  constructor(private router: Router, public commonService: CommonService, public classService:ClassService) { 
+  constructor(private router: Router, public commonService: CommonService, public classService:ClassService, public navCtrl: NavController) { 
   }
 
   ngOnInit() {
@@ -30,5 +32,16 @@ export class ViewAllClassesPage implements OnInit {
   );
 
   }
+  goToSessionPage(p:any){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          tempClass: JSON.stringify(p)
+      }
+    }
+    this.navCtrl.navigateForward(['view-aclass-sessions'], navigationExtras);
+  }
 
-}
+};
+
+
+
