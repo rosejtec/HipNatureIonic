@@ -4,6 +4,46 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content >
+  <ion-card >
+    <ion-card-content style="color: black; font-size: larger;">
+      <ion-row>
+        Class Selected: {{tempClass.className}}
+      </ion-row>
+      <ion-row>
+        Credit Price: {{tempClass.credit}}
+      </ion-row>
+      <ion-row>
+        Class Location: {{tempClass.locationTypeEnum}}
+      </ion-row>
+    </ion-card-content>
+    
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1>
+        Session Id
+      </ion-col>
+      <ion-col col-1>
+        Session Start Time
+      </ion-col>
+      <ion-col col-1>
+        Session Start Time
+      </ion-col>
+      <ion-col col-2>
+        Phone Number
+      </ion-col>
+      <ion-col col-2>
+        Instructor
+      </ion-col>
+      <ion-col col-1>
+        Location
+      </ion-col>
+      <ion-col col-1>
+        Action
+      </ion-col>
+    </ion-row>
+  
+  </ion-grid>
 </ion-content>
+
