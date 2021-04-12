@@ -32,10 +32,20 @@ export class CartService {
     return this.cartItemCount;
   }
   addSession(product) {
-
-    this.cart.push(product);
-    this.cartItemCount.next(this.cartItemCount.value + 1);
+    let repeat = false;
+    for (let p of this.cart) {
+      if (p.sessionId === product.sessionId) {
+        p.amount += 1;
+        repeat= true;
+        break;
+      }
+    }
+    if (!repeat) {
+      this.cart.push(product);
+      this.cartItemCount.next(this.cartItemCount.value + 1);
+    }
   }
+
   removeSession(product) {
     for (let [index, p] of this.cart.entries()) {
       if (p.id === product.id) {
