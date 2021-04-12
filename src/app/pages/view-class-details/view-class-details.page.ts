@@ -9,7 +9,8 @@ import { Class } from '../../models/class';
 import { AlertController } from '@ionic/angular';
 import { Review } from '../../models/review';
 import { ReviewService } from '../../services/review.service';
-
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-view-class-details',
   templateUrl: './view-class-details.page.html',
@@ -31,10 +32,12 @@ export class ViewClassDetailsPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private classService: ClassService,
     private reviewService: ReviewService,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public navCtrl: NavController) {
     this.retrieveClassError = false;
     this.error = false;
     this.resultSuccess = false;
+    
   }
 
 
@@ -75,12 +78,14 @@ export class ViewClassDetailsPage implements OnInit {
     console.log(this.retrieveClassError)
 
   }
-
-
-
+  viewSessionsDetails(event,p){
+    console.log(p)
+    this.router.navigate(["/view-aclass-sessions/" + p]);
+  }
   back() {
     this.router.navigate(["/view-all-classes"]);
   }
+
 
 }
 

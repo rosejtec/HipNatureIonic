@@ -1,39 +1,47 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
     <ion-title>View Class Sessions</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <ion-card >
-    <ion-card-content style="color: black; font-size: larger;">
-      <ion-row>
-        Class Selected: {{tempClass.className}}
-      </ion-row>
-      <ion-row>
-        Credit Price: {{tempClass.credit}}
-      </ion-row>
-      <ion-row>
-        Class Location: {{tempClass.locationTypeEnum}}
-      </ion-row>
-    </ion-card-content>
-    
-  </ion-card>
-  <ion-grid>
+      <ion-list *ngIf="tempClass != null">
+        <ion-item>
+          <ion-label><b>Class Name</b></ion-label>
+          {{tempClass.className}}
+        </ion-item>
+        <ion-item>
+          <ion-label><b>Class Credits</b></ion-label>
+          {{tempClass.credit}}
+
+        </ion-item>
+        <ion-item>
+          <ion-label><b>Class Location</b></ion-label>
+          {{tempClass.locationTypeEnum}}
+
+        </ion-item>    
+      </ion-list >
+      <br/>
+  <ion-grid style="border: black;">
     <ion-row>
       <ion-col col-1>
         Session Id
       </ion-col>
-      <ion-col col-1>
-        Session Start Time
-      </ion-col>
-      <ion-col col-1>
+      <ion-col col-2>
         Session Start Time
       </ion-col>
       <ion-col col-2>
+        Session End Time
+      </ion-col>
+      <ion-col col-1>
         Phone Number
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-1>
         Instructor
       </ion-col>
       <ion-col col-1>
@@ -42,6 +50,30 @@
       <ion-col col-1>
         Action
       </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let p of sessionList; let i = index" >
+      <ion-col col-1>
+        {{p.sessionId}}
+      </ion-col>
+      <ion-col col-1>
+        {{p.venue}}
+      </ion-col>
+      <ion-col col-1>
+        {{p.startTime}}
+      </ion-col>
+      <ion-col col-3>
+        {{p.endTime}}
+      </ion-col>
+      <ion-col col-3>
+        {{p.instructor}}
+      </ion-col>
+      <ion-col col-1>
+        {{p.locationTypeEnum}}
+      </ion-col>
+      <ion-col col-1>
+        
+      </ion-col>
+      <br/>
     </ion-row>
   
   </ion-grid>

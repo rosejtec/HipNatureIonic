@@ -31,18 +31,16 @@ export class ViewAllClassesPage implements OnInit {
       }
   );
   }
-  goToSessionPage(p:any){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          tempClass: JSON.stringify(p)
-      }
-    }
-    this.navCtrl.navigateForward(['view-aclass-sessions'], navigationExtras);
+  viewSessionsDetails(event,p){
+    console.log(p)
+    this.router.navigate(["/view-aclass-sessions/" + p.classId]);
   }
-
   viewClassDetails(event, p) {
     console.log(p)
     this.router.navigate(["/view-class-details/" + p.classId]);
+  }
+  back() {
+    this.router.navigate(["/view-all-classes"]);
   }
 };
 

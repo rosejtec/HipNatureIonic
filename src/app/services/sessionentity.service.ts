@@ -21,11 +21,12 @@ const httpOptions = {
 export class SessionentityService {
 
   
-  baseUrl: string = '/api/SessionsEntity'
+  baseUrl: string = '/api/Sessions'
 
   constructor(private httpClient:HttpClient) { }
   
   getSessionsList(classId: number): Observable<SessionEntity[]> {
+    console.log("getSessionsList method")
     return this.httpClient.get<SessionEntity[]>(this.baseUrl + "/retrieveSessionsByClassId/" + classId).pipe(
       catchError(this.handleError)
     );

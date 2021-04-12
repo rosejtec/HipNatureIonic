@@ -3,7 +3,7 @@
     <ion-title>Classes </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-card *ngFor="let p of allClasses;" (click)="viewClassDetails($event,p)">
+<ion-card *ngFor="let p of allClasses;">
   <ion-card-header>
     <ion-card-title>{{p.className}}</ion-card-title>
   </ion-card-header>
@@ -15,7 +15,11 @@
     <br>
     
     <ion-item>
-      <ion-button float-right  fill="outline" slot="end" (click)="goToSessionPage(p)">View More</ion-button>
+      <ion-button float-right  fill="outline" slot="end" (click)="viewSessionsDetails($event, p)">View Session Schedule</ion-button>
+      <ion-button float-right  fill="outline" slot="end" (click)="viewClassDetails($event,p)">View More</ion-button>
+    </ion-item>
+    <ion-item>
+      
     </ion-item>
 
   </ion-card-content>

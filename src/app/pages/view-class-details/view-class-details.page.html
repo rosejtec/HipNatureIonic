@@ -26,6 +26,9 @@
       <ion-label><b>Class Location</b></ion-label>
       {{classToView.locationTypeEnum}}
     </ion-item>    
+    <ion-item >
+      <ion-button float-right  fill="outline" slot="end" (click)="viewSessionsDetails($event, classToView.classId)">View Sessions Schedule</ion-button>
+    </ion-item>
   </ion-list >
 
   <br>
@@ -42,4 +45,5 @@
       <p>{{r.description}}</p>
     </ion-item>
   </ion-list>
+
 </ion-content>

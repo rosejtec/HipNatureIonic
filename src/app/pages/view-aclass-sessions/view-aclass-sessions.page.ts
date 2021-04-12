@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { Class } from 'src/app/models/class';
 import { SessionEntity } from 'src/app/models/session-entity';
 import {SessionentityService} from '../../services/sessionentity.service';
+import { ClassService } from '../../services/class.service';
 
 @Component({
   selector: 'app-view-aclass-sessions',
@@ -11,23 +12,42 @@ import {SessionentityService} from '../../services/sessionentity.service';
 })
 export class ViewAClassSessionsPage implements OnInit {
   tempClass : Class
+  classId: number;
   sessionList : SessionEntity[];
-  constructor(private route: ActivatedRoute, private sessionentityService:SessionentityService) { }
+  constructor(private router: Router, private sessionentityService:SessionentityService, private activatedRoute: ActivatedRoute,private classService: ClassService) { }
   
   ngOnInit() {
-      this.route.queryParams.subscribe(params => {
-      this.tempClass = JSON.parse(params["tempClass"]);
-      });
-      console.log(this.tempClass.locationTypeEnum);
+      this.classId = parseInt(this.activatedRoute.snapshot.paramMap.get('classId'));
+      this.refreshClass();
       this.refreshSessions();
+      console.log('Finish ngOnInit for view-aclass-session')
     }
-    
+
   refreshSessions(){
-    this.sessionentityService.getSessionsList(this.tempClass.classId).subscribe(
-      response => {this.sessionList = response;},
+    console.log('At refreshSessions1')
+    this.sessionentityService.getSessionsList(this.classId).subscribe(
+      response => {
+        let sess: SessionEntity[] = response;
+        this.sessionList = sess;
+        console.log(this.sessionList)
+        console.log('At refreshSessions')},
     error => {console.log('View A Class Session Page typescript: ' + error);}
     );
-    console.log(this.sessionList);
   }
+  
+  refreshClass() {
+    this.classService.getClassByClassId(this.classId).subscribe(
+      response => {
+        this.tempClass = response;
+        console.log('At View-aclass-sessions page')
+      },
+      error => {
+        console.log('********** ViewClassDetailsPage.ts: ' + error);
+      }
+    );
 
+  }
+  back() {
+    this.router.navigate(["/view-all-classes"]);
+  }
 }

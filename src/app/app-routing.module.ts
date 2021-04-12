@@ -39,8 +39,9 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'view-aclass-sessions',
-    loadChildren: () => import('./pages/view-aclass-sessions/view-aclass-sessions.module').then( m => m.ViewAClassSessionsPageModule)
+    path: 'view-aclass-sessions/:classId',
+    loadChildren: () => import('./pages/view-aclass-sessions/view-aclass-sessions.module').then( m => m.ViewAClassSessionsPageModule),
+    canActivate:[AuthGuard]
   }
 ];
 
