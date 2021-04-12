@@ -12,6 +12,8 @@
       <ion-row>
         <ion-col>Session Id
         </ion-col>
+        <ion-col>Class Name
+        </ion-col>
         <ion-col >StartTime
         </ion-col>
         <ion-col >EndTime
@@ -26,6 +28,9 @@
           <ion-row>
             <ion-col>
               {{p.sessionId}}
+            </ion-col>
+            <ion-col>
+              {{p.className}}
             </ion-col>
             <ion-col >
               {{p.startTime}}
@@ -46,8 +51,8 @@
         </ion-grid>
       </ion-item>
     </ion-list>
-    <ion-row style="float: right; font-size: larger;">
-        <b>Total: {{getTotal()}}</b>
+    <ion-row style="float: right; font-size: larger; padding-right: 5%;">
+        <b>Total Credits: {{getTotal()}}</b>
     </ion-row>
 
       <ion-button expand="full" (click)="checkout()">

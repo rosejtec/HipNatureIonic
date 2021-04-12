@@ -12,7 +12,8 @@ export interface Product {
   maxCapacity:number
   status:string
   instructor:string
-  credit:number
+  credit:number,
+  className:string
 }
 
 @Injectable({
@@ -48,8 +49,8 @@ export class CartService {
 
   removeSession(product) {
     for (let [index, p] of this.cart.entries()) {
-      if (p.id === product.id) {
-        this.cartItemCount.next(this.cartItemCount.value - p.amount);
+      if (p.sessionId === product.sessionId) {
+        this.cartItemCount.next(this.cartItemCount.value - 1);
         this.cart.splice(index, 1);
       }
     }

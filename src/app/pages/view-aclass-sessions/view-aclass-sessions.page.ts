@@ -52,6 +52,7 @@ export class ViewAClassSessionsPage implements OnInit {
   addToCart(product) {
     console.log(product)
     product.credit = this.tempClass.credit;
+    product.className = this.tempClass.className;
     this.cartService.addSession(product);
     console.log(this.cartService)
   }
