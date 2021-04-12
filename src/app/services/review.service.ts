@@ -6,9 +6,15 @@ import {
 } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
+import { CreateReviewReq} from '../models/create-review-req';
 
 import { CommonService } from './common.service'
 import { Review } from '../models/review';
+
+const httpOptions = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,7 +36,15 @@ export class ReviewService {
       catchError(this.handleError)
     );
   }
-
+  createNewReview(newReview: Review): Observable<number>
+  {		
+    let createReviewReq: CreateReviewReq = new CreateReviewReq(this.commonService.getUsername(), this.commonService.getPassword(), newReview);
+    
+    return this.httpClient.put<number>(this.baseUrl, createReviewReq, httpOptions).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
    
     private handleError(error: HttpErrorResponse)
     {

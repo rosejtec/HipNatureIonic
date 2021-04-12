@@ -25,7 +25,10 @@ export class ViewClassDetailsPage implements OnInit {
   errorMessage: string;
   resultSuccess: boolean;
   reviews:Review[];
-
+  resultError: boolean;
+  message: string;
+  submitted:boolean;
+  newReview:Review;
 
 
   constructor(private router: Router,
@@ -37,7 +40,12 @@ export class ViewClassDetailsPage implements OnInit {
     this.retrieveClassError = false;
     this.error = false;
     this.resultSuccess = false;
-    
+    this.submitted = false;
+    this.newReview = new Review();
+    this.newReview.reviewRating = 1;
+
+    this.resultSuccess = false;
+    this.resultError = false;
   }
 
 
@@ -86,8 +94,39 @@ export class ViewClassDetailsPage implements OnInit {
     this.router.navigate(["/view-all-classes"]);
   }
 
+  clear() {
+    this.submitted = false;
+    this.newReview = new Review();
+  }
+
+
+
+  create(createReviewForm: NgForm) {
+
+    this.submitted = true;
+
+    if (createReviewForm.valid) {
+      this.reviewService.createNewReview(this.newReview).subscribe(
+        response => {
+          let newProductId: number = response;
+          this.resultSuccess = true;
+          this.resultError = false;
+          this.message = "New product " + newProductId + " created successfully";
+
+          this.newReview = new Review();
+          this.submitted = false;
+          createReviewForm.reset();
+        },
+        error => {
+          this.resultError = true;
+          this.resultSuccess = false;
+          this.message = "An error has occurred while creating the new Review: " + error;
+
+          console.log('********** CreateNewReviewPage.ts: ' + error);
+        }
+      );
+    }
+  }
 
 }
-
-
 
