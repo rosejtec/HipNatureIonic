@@ -31,6 +31,7 @@ export class ViewAllClassesPage implements OnInit {
       }
   );
   }
+  
   goToSessionPage(p:any){
     let navigationExtras: NavigationExtras = {
       queryParams: {
