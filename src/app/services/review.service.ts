@@ -8,13 +8,13 @@ import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 import { CommonService } from './common.service'
-import { Class } from '../models/class'
+import { Review } from '../models/review';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassService {
+export class ReviewService {
 
-  baseUrl: string = '/api/Class'
+  baseUrl: string = '/api/Review'
 
   constructor(
     private httpClient: HttpClient,
@@ -23,21 +23,15 @@ export class ClassService {
     console.log(commonService.getIsLogin())
   }
 
-  retrieveAllClasses(): Observable<Class[]>
-    {
-        return this.httpClient.get<Class[]>(this.baseUrl + "/retrieveAllClasses").pipe
-        (
-            catchError(this.handleError)
-        );
-    }
+  getAllReviewsByClassId(classId: number): Observable<Review[]>
+  {
+    return this.httpClient.get<Review[]>(this.baseUrl + "/retrieveReviewsByClassId/" + classId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
 
-    getClassByClassId(classId: number): Observable<Class>
-    {
-      return this.httpClient.get<Class>(this.baseUrl + "/retrieveClass/" + classId).pipe
-      (
-        catchError(this.handleError)
-      );
-    }
+   
     private handleError(error: HttpErrorResponse)
     {
         let errorMessage: string = "";

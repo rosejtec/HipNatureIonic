@@ -28,7 +28,12 @@ export class ViewAllClassesPage implements OnInit {
           console.log(error);
       }
   );
-
   }
 
+
+
+  viewClassDetails(event, p) {
+    console.log(p)
+    this.router.navigate(["/view-class-details/" + p.classId]);
+  }
 }
