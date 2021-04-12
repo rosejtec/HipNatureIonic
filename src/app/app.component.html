@@ -12,6 +12,13 @@
           </ion-menu-toggle>
         </ion-list>
 
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="commonService.getIsLogin()">
+          <ion-fab-button (click)="openCart()" #cart>
+            <div class="cart-length">{{ cartItemCount | async }}</div>
+            <ion-icon name="cart" class="cart-icon"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
         <ion-list *ngIf="!commonService.getIsLogin()">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogout; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"

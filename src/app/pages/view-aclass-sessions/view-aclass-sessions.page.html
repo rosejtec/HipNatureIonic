@@ -39,7 +39,7 @@
         Session End Time
       </ion-col>
       <ion-col col-1>
-        Phone Number
+        Venue
       </ion-col>
       <ion-col col-1>
         Instructor
@@ -56,13 +56,13 @@
         {{p.sessionId}}
       </ion-col>
       <ion-col col-1>
-        {{p.venue}}
-      </ion-col>
-      <ion-col col-1>
         {{p.startTime}}
       </ion-col>
       <ion-col col-3>
         {{p.endTime}}
+      </ion-col>
+      <ion-col col-1>
+        {{p.venue}}
       </ion-col>
       <ion-col col-3>
         {{p.instructor}}
@@ -71,7 +71,9 @@
         {{p.locationTypeEnum}}
       </ion-col>
       <ion-col col-1>
-        
+        <ion-button fill="clear" (click)="addToCart(p)">
+          <ion-icon name="add"></ion-icon>
+        </ion-button>
       </ion-col>
       <br/>
     </ion-row>

@@ -1,0 +1,59 @@
+<ion-content fullscreen>
+ 
+  <div class="ion-text-end">
+    <ion-button (click)="close()" fill="clear" color="dark">
+      <ion-icon name="close" slot="start"></ion-icon>
+    </ion-button>
+  </div>
+ 
+  <div class="ion-padding">
+ 
+    <ion-list>
+      <ion-row>
+        <ion-col>Session Id
+        </ion-col>
+        <ion-col >StartTime
+        </ion-col>
+        <ion-col >EndTime
+        </ion-col>
+        <ion-col >Instructor
+        </ion-col>
+        <ion-col >Credit
+        </ion-col>
+      </ion-row>
+      <ion-item *ngFor="let p of cart" >
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              {{p.sessionId}}
+            </ion-col>
+            <ion-col >
+              {{p.startTime}}
+            </ion-col>
+            <ion-col >
+              {{p.endTime}}
+            </ion-col>
+            <ion-col style="text-align: center;">
+              {{p.instructor}}
+            </ion-col>
+            <ion-col style="text-align: center;">
+              {{p.credit}}
+            </ion-col>
+              <ion-button color="medium" fill="clear" (click)="removeCartItem(p)">
+                <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+              </ion-button>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+    <ion-row style="float: right; font-size: larger;">
+        <b>Total: {{getTotal()}}</b>
+    </ion-row>
+
+      <ion-button expand="full" (click)="checkout()">
+        Checkout
+      </ion-button>
+
+  </div>
+ 
+</ion-content>

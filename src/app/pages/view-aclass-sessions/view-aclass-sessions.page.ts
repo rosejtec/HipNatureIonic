@@ -5,6 +5,8 @@ import { SessionEntity } from 'src/app/models/session-entity';
 import {SessionentityService} from '../../services/sessionentity.service';
 import { ClassService } from '../../services/class.service';
 
+import { CartService } from '../../services/cart.service';
+
 @Component({
   selector: 'app-view-aclass-sessions',
   templateUrl: './view-aclass-sessions.page.html',
@@ -14,7 +16,7 @@ export class ViewAClassSessionsPage implements OnInit {
   tempClass : Class
   classId: number;
   sessionList : SessionEntity[];
-  constructor(private router: Router, private sessionentityService:SessionentityService, private activatedRoute: ActivatedRoute,private classService: ClassService) { }
+  constructor(private router: Router, private sessionentityService:SessionentityService, private activatedRoute: ActivatedRoute,private classService: ClassService, private cartService: CartService) { }
   
   ngOnInit() {
       this.classId = parseInt(this.activatedRoute.snapshot.paramMap.get('classId'));
@@ -47,6 +49,13 @@ export class ViewAClassSessionsPage implements OnInit {
     );
 
   }
+  addToCart(product) {
+    console.log(product)
+    product.credit = this.tempClass.credit;
+    this.cartService.addSession(product);
+    console.log(this.cartService)
+  }
+  
   back() {
     this.router.navigate(["/view-all-classes"]);
   }
