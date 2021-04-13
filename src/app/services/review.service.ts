@@ -36,10 +36,12 @@ export class ReviewService {
       catchError(this.handleError)
     );
   }
-  createNewReview(newReview: Review): Observable<number>
+  createNewReview(newReview: Review, classId:number): Observable<number>
   {		
-    let createReviewReq: CreateReviewReq = new CreateReviewReq(this.commonService.getUsername(), this.commonService.getPassword(), newReview);
+    console.log(newReview)
+    let createReviewReq: CreateReviewReq = new CreateReviewReq(this.commonService.getUsername(), this.commonService.getPassword(), newReview.reviewRating,newReview.description,classId);
     
+    console.log(createReviewReq)
     return this.httpClient.put<number>(this.baseUrl, createReviewReq, httpOptions).pipe
     (
       catchError(this.handleError)

@@ -3,6 +3,10 @@
     <ion-title>Classes </ion-title>
   </ion-toolbar>
 </ion-header>
+
+<ion-content>
+  <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+
 <ion-card *ngFor="let p of allClasses;">
   <ion-card-header>
     <ion-card-title>{{p.className}}</ion-card-title>
@@ -25,6 +29,5 @@
   </ion-card-content>
   
 </ion-card>    
-<ion-content>
 
 </ion-content>

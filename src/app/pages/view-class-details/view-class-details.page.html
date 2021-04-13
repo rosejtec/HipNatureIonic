@@ -32,7 +32,7 @@
   </ion-list >
 
   <br>
-  <ion-label><b>Reviews</b></ion-label>
+  <ion-label><b>Create a review</b></ion-label>
 
   <ion-content>
     <form #createReviewForm="ngForm" (ngSubmit)="create(createReviewForm)">
@@ -100,18 +100,28 @@
         </ion-card-content>
   
       </ion-card>
+
   
     </form>
   
-  </ion-content>
-  <ion-list *ngFor="let r of reviews;"> 
     <ion-item>
-      <h2>{{r.reviewRating}}</h2>
-    
-      <br>
-      <p>{{r.description}}</p>
+      <ion-label><b>Reviews</b></ion-label>
     </ion-item>
+    <ion-card *ngFor="let p of reviews; let i = index">
+      <ion-card-header>
+        <ion-card-title>{{p.reviewId}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        
+        <ion-label>{{p.reviewRating}}</ion-label>
+      <br>
+        <ion-label>{{p.description}}</ion-label>
+        <br>
 
-  </ion-list>
 
+      </ion-card-content>
+      
+    </ion-card>    
+  </ion-content>
+  
 </ion-content>

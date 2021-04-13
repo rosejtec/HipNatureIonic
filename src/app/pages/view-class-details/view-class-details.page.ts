@@ -63,6 +63,7 @@ export class ViewClassDetailsPage implements OnInit {
     this.reviewService.getAllReviewsByClassId(this.classId).subscribe(
       response => {
         this.reviews = response;
+        console.log(this.reviews)
       },
       error => {
         this.retrieveClassError = true;
@@ -106,12 +107,13 @@ export class ViewClassDetailsPage implements OnInit {
     this.submitted = true;
 
     if (createReviewForm.valid) {
-      this.reviewService.createNewReview(this.newReview).subscribe(
+      this.reviewService.createNewReview(this.newReview,this.classId).subscribe(
         response => {
-          let newProductId: number = response;
+          let newReviewId: number = response;
+          console.log(newReviewId)
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "New product " + newProductId + " created successfully";
+          this.message = "New product " + newReviewId + " created successfully";
 
           this.newReview = new Review();
           this.submitted = false;
