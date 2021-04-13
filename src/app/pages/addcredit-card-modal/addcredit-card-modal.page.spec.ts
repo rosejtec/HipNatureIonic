@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { AddCreditCardPage } from './add-credit-card.page';
+import { AddcreditCardModalPage } from './addcredit-card-modal.page';
 
-describe('AddCreditCardPage', () => {
-  let component: AddCreditCardPage;
-  let fixture: ComponentFixture<AddCreditCardPage>;
+describe('AddcreditCardModalPage', () => {
+  let component: AddcreditCardModalPage;
+  let fixture: ComponentFixture<AddcreditCardModalPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCreditCardPage ],
+      declarations: [ AddcreditCardModalPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddCreditCardPage);
+    fixture = TestBed.createComponent(AddcreditCardModalPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

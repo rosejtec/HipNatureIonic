@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add New Credit Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div *ngIf="resultSuccess == true" style="color: blue;">
+    {{message}}
+  </div>
+  <form #createCreditCardForm="ngForm" (ngSubmit)="create(createCreditCardForm)">
+    <ion-card>
+      <ion-card-content>
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+        <div style="color: red;"
+          *ngIf="cardNumber.invalid && (cardNumber.dirty||cardNumber.touched||cardNumber.submitted)" class="errorText">
+          CreditCard Number is required.
+        </div>
+        <div style="color: red;" *ngIf="ccv.invalid && (ccv.dirty||ccv.touched||ccv.submitted)" class="errorText">
+          <div *ngIf="ccv.errors.required">
+            CCV is required.
+          </div>
+
+        </div>
+        <div style="color: red;"
+          *ngIf="expiryDate.invalid && (expiryDate.dirty||expiryDate.touched||expiryDate.submitted)" class="errorText">
+          Expiry Date is required.
+        </div>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              CreditCard Number:
+            </ion-label>
+            <ion-input maxlength="16" #cardNumber="ngModel" inputmode="numeric" type="text" name="cardNumber"
+              id="cardNumber" [(ngModel)]="newCreditCard.cardNumber" (keypress)="numericOnly($event)" required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              ccv:
+            </ion-label>
+            <ion-input #ccv="ngModel" inputmode="numeric" type="text" name="ccv" id="ccv" maxlength ="3"
+              [(ngModel)]="newCreditCard.cvv" (keypress)="numericOnly($event)" required="true">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Expiry Date (MM/YY):
+            </ion-label>
+            <ion-input #expiryDate="ngModel" inputmode="numeric" type="text" name="expiryDate" maxlength ="5"
+              id="expiryDate" [(ngModel)]="newCreditCard.expiryDate" required="true">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card style="text-align: center;">
+      <ion-button (click)="clear(createCreditCardForm)">
+        Clear
+      </ion-button>
+      <ion-button type="submit" ion-button block>
+        Add
+      </ion-button>
+    </ion-card>
+  </form>
+</ion-content>
