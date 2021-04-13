@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>viewMyCreditCards</ion-title>
+    <ion-title>View My Credit Cards</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+      <ion-item>
+        <ion-label><b>Name</b></ion-label>
+        {{currentCustomer.customerName}}
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Type</b></ion-label>
+        {{currentCustomer.customerTypeEnum}}
+      </ion-item>
+      <ion-item>
+        <ion-label><b>Email</b></ion-label>
+        {{currentCustomer.email}}
+      </ion-item>   
+      <ion-item>
+        <ion-button expand ="full" (click)=addNewCreditCardForm()>
+          Add new Credit Cards. Need to make form
+        </ion-button>
+      </ion-item>   
+  </ion-card>
+  <ion-card>
+
+  </ion-card>
 
 </ion-content>
