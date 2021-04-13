@@ -8,15 +8,20 @@ import { Class } from '../../models/class';
 
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { LocationTypeEnum } from '../../models/location-type-enum.enum';
 @Component({
   selector: 'app-view-all-classes',
   templateUrl: './view-all-classes.page.html',
   styleUrls: ['./view-all-classes.page.scss'],
 })
 export class ViewAllClassesPage implements OnInit {
-  allClasses : Class[];
-
+  backupAllClasses : Class[];
+  filterClass:Class[];
+  searchTerm:string;
+  locationTypeEnum:Object[]
   constructor(private router: Router, public commonService: CommonService, public classService:ClassService, public navCtrl: NavController) { 
+  this.locationTypeEnum= Object.values(LocationTypeEnum);
+
   }
 
   ngOnInit() {
@@ -24,13 +29,41 @@ export class ViewAllClassesPage implements OnInit {
     this.classService.retrieveAllClasses().subscribe(
       response => {
           let classes: Class[] = response;
-          this.allClasses=classes
+          this.backupAllClasses=classes
+          this.filterClass = classes
       },
       error => {
           console.log(error);
       }
   );
   }
+
+   
+
+  async filterList(evt) {
+    this.filterClass = this.backupAllClasses;
+  
+    if (!this.searchTerm) {
+      const searchTerm = evt.srcElement.value;
+      if (!searchTerm) {
+              return;
+      } else{
+        this.filterClass = this.filterClass.filter(currentClass=> {
+          if (currentClass.className && searchTerm) {
+            return ((String(currentClass.locationTypeEnum).toLowerCase().startsWith(searchTerm.toLowerCase())));
+          }
+        });
+      }
+    }
+    
+  
+    this.filterClass = this.filterClass.filter(currentClass=> {
+      if (currentClass.className && this.searchTerm) {
+        return (currentClass.className.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1|| (String(currentClass.locationTypeEnum).toLowerCase().startsWith(this.searchTerm.toLowerCase())));
+      }
+    });
+  }
+
   viewSessionsDetails(event,p){
     console.log(p)
     this.router.navigate(["/view-aclass-sessions/" + p.classId]);

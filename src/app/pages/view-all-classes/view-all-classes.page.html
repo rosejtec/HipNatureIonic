@@ -5,14 +5,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar showCancelButton="focus" cancelButtonText="Custom Cancel"></ion-searchbar>
+  <ion-searchbar placeholder="Search..." [(ngModel)]="searchTerm" showCancelButton="focus" cancelButtonText="Custom Cancel" autocomplete="true"  debounce="500"  animated="true" (ionChange)="filterList($event)" (ionInput)="filterList($event)"></ion-searchbar>
+  <!-- <ion-list>
+    <ion-item *ngFor="let data of locationTypeEnum ; let i= index;" (ionSelect)="filterList(data)" >
+      <ion-label>{{data}}</ion-label>
+    </ion-item>
+  </ion-list> -->
 
-<ion-card *ngFor="let p of allClasses;">
+<ion-card *ngFor="let p of filterClass;">
   <ion-card-header>
     <ion-card-title>{{p.className}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    
+      <img src="../../../assets/picture.jpeg" style="max-width:100%;max-height:70%;">
+      <br>
+
     <ion-label>Credits per Class : ${{p.credit}}</ion-label>
   <br>
     <ion-label>Location : {{p.locationTypeEnum}}</ion-label>

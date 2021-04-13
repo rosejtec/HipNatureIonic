@@ -9,6 +9,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 import { CartModalPageModule } from './pages/cart-modal/cart-modal.module';
@@ -24,7 +25,8 @@ import {Stripe} from '@ionic-native/stripe/ngx';
     AppRoutingModule, 
     FormsModule, 
     HttpClientModule,
-    CartModalPageModule],
+    CartModalPageModule,
+    Ng2SearchPipeModule],
   providers: [Stripe,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

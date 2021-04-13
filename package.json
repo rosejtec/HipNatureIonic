@@ -26,6 +26,7 @@
     "angular-cc-library": "^2.1.2",
     "animate.css": "^4.1.1",
     "cordova-plugin-stripe": "^1.5.3",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
