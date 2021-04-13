@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { CartModalPageModule } from './pages/cart-modal/cart-modal.module';
+import {Stripe} from '@ionic-native/stripe/ngx';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { CartModalPageModule } from './pages/cart-modal/cart-modal.module';
     FormsModule, 
     HttpClientModule,
     CartModalPageModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Stripe,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

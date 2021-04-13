@@ -45,12 +45,25 @@ const routes: Routes = [
   },
   {
     path: 'add-credit-card',
-    loadChildren: () => import('./pages/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule)
+    loadChildren: () => import('./pages/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'cart-modal',
-    loadChildren: () => import('./pages/cart-modal/cart-modal.module').then( m => m.CartModalPageModule)
+    loadChildren: () => import('./pages/cart-modal/cart-modal.module').then( m => m.CartModalPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'payment-modal',
+    loadChildren: () => import('./pages/payment-modal/payment-modal.module').then( m => m.PaymentModalPageModule),
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'view-my-credit-cards',
+    loadChildren: () => import('./pages/view-my-credit-cards/view-my-credit-cards.module').then( m => m.ViewMyCreditCardsPageModule),
+    canActivate:[AuthGuard]
   }
+
 
 
 ];

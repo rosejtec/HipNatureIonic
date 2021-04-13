@@ -10,12 +10,25 @@ import { catchError } from 'rxjs/operators'
 import { CommonService } from './common.service'
 import { Plan } from '../models/plan'
 
+
+
+export interface planDetails {
+  planId:number
+  price: number;
+  creditValue:number;
+  planName:string;
+  sessionLimit:number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class PlanService {
+
   baseUrl: string = '/api/Plan'
 
+  private planDetails;
+  
   constructor(
     private httpClient: HttpClient,
     private commonService: CommonService,
@@ -47,6 +60,12 @@ export class PlanService {
         console.error(errorMessage);
         
         return throwError(errorMessage);        
+    }
+    addPlan(product) {
+        this.planDetails = product;
+    }
+    getPlan() {
+      return this.planDetails;
     }
 
 }

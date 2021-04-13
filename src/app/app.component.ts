@@ -42,6 +42,11 @@ export class AppComponent {
 			title: 'View All Classes',
 			url: "/view-all-classes",
 			icon: 'add-circle'
+		},
+		{
+			title: 'View Payment Details',
+			url: "/view-my-credit-cards",
+			icon: 'add-circle'
 		}
 	]
 

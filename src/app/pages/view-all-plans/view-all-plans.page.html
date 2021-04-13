@@ -17,8 +17,11 @@
         <br>
 
         <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
-        <ion-item>
-          <ion-button float-right  fill="outline" slot="end">Buy</ion-button>
+        <ion-item >
+          <ion-button float-right  fill="outline" slot="end">dont use this</ion-button>
+          <ion-button (click)="openPlan(p)" float-right  fill="outline" slot="end">
+            Buy
+          </ion-button>
         </ion-item>
 
       </ion-card-content>
