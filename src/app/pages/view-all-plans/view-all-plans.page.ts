@@ -59,12 +59,6 @@ export class ViewAllPlansPage implements OnInit {
   }
 
 
-  async checkActivePlan() {
-    if (this.currentPlan != null) {
-      return true;
-    }
-    return false;
-  }
   retrieveCurrentPlan() {
     this.purchaseplanService.getCurrentPlan().subscribe(
       response => {
