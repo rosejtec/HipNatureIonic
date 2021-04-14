@@ -1,6 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http'
+import { Observable, throwError } from 'rxjs'
+import { catchError } from 'rxjs/operators'
+import { CheckoutSessionReq } from '../models/checkout-session-req';
+import { CommonService } from './common.service';
+import { SessionEntity } from '../models/session-entity';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 export interface Product {
   sessionId:number
@@ -23,7 +37,12 @@ export class CartService {
   private cart = [];
   private cartItemCount = new BehaviorSubject(0);
 
-  constructor() { }
+  baseUrl: string = "/api/Sessions";
+
+  constructor(private httpClient: HttpClient,
+    private commonService: CommonService) {
+    console.log(commonService.getIsLogin())
+  }
  
   getCart() {
     return this.cart;
@@ -54,5 +73,28 @@ export class CartService {
         this.cart.splice(index, 1);
       }
     }
+  }
+  checkoutSession(sessionsArray:Product[]):Observable<number>{
+    console.log("In Cart Service");
+    console.log(sessionsArray)
+    let checkoutSessionReq:CheckoutSessionReq = new CheckoutSessionReq(this.commonService.getUsername(), this.commonService.getPassword(), sessionsArray)
+    return this.httpClient.put<number>(this.baseUrl,checkoutSessionReq , httpOptions).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage: string = "";
+
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = "An unknown error has occurred: " + error.error;
+    }
+    else {
+      errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error}`;
+    }
+
+    console.error(errorMessage);
+
+    return throwError(errorMessage);
   }
 }

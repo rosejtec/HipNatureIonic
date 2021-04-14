@@ -8,7 +8,9 @@
   <ion-card>
     <ion-item>
       <ion-label><b>Current Plan</b></ion-label>
-      <div *ngIf="currentPlan != null">ACTIVE</div>
+      <div *ngIf="currentPlan != null"> Status: ACTIVE </div>
+      <br><br/>
+      <div *ngIf="currentPlan != null"> Session Left: {{currentPlan.sessionLeft}}</div>
     </ion-item>
   </ion-card>
     <ion-card *ngFor="let p of allPlans; let i = index">
@@ -23,7 +25,7 @@
         <br>
 
         <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
-          <ion-button expand="block" (click)="openPlan(p)" >
+          <ion-button expand="block" (click)="openPlan(p)" disabled="currentPlan != null" >
             Buy
           </ion-button>
 

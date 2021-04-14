@@ -52,10 +52,16 @@
       </ion-item>
     </ion-list>
     <ion-row style="float: right; font-size: larger; padding-right: 5%;">
+      <ion-col style="float: left;">
+        <b>Session Available(Left): {{getTotalSession()}}</b>
+      </ion-col>
+      <ion-col style="float: right;">
         <b>Total Credits: {{getTotal()}}</b>
+      </ion-col>
+        
     </ion-row>
 
-      <ion-button expand="full" (click)="checkout()">
+      <ion-button expand="full" (click)="makeCheckoutSession()">
         Checkout
       </ion-button>
 

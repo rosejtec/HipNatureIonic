@@ -28,6 +28,7 @@ export class ViewAllPlansPage implements OnInit {
 
 
   constructor(private purchaseplanService: PurchaseplanService, private router: Router, public commonService: CommonService, public planService: PlanService, private modalCtrl: ModalController) {
+    this.currentPlan =  null
   }
 
   ngOnInit() {
@@ -41,12 +42,13 @@ export class ViewAllPlansPage implements OnInit {
         console.log(error);
       }
     );
-    this.retrieveCurrentPlan();
+   
   }
   ngAfterViewInit() {
     console.log("afterinit");
     setTimeout(() => {
-    }, 1000);
+      this.retrieveCurrentPlan();
+    }, 3000);
   }
   async openPlan(product) {
     this.planService.addPlan(product);
@@ -64,8 +66,8 @@ export class ViewAllPlansPage implements OnInit {
       response => {
         let temp: Purchasedplan = response;
         this.currentPlan = temp;
-        console.log(this.currentPlan)
         JSON.stringify(this.currentPlan)
+        console.log(this.currentPlan)
       },
       error => {
         console.log(error);
