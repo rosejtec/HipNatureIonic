@@ -5,6 +5,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label><b>Current Plan</b></ion-label>
+      <div *ngIf="checkActivePlan() and currentPlan != null">ACTIVE</div>
+    </ion-item>
+  </ion-card>
     <ion-card *ngFor="let p of allPlans; let i = index">
       <ion-card-header>
         <ion-card-title>{{p.planName}}</ion-card-title>
@@ -17,12 +23,9 @@
         <br>
 
         <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
-        <ion-item >
-          <ion-button float-right  fill="outline" slot="end">dont use this</ion-button>
-          <ion-button (click)="openPlan(p)" float-right  fill="outline" slot="end">
+          <ion-button expand="block" (click)="openPlan(p)" disabled="checkActivePlan()" >
             Buy
           </ion-button>
-        </ion-item>
 
       </ion-card-content>
       

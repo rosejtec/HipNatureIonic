@@ -6,25 +6,53 @@
 
 <ion-content>
   <ion-card>
-      <ion-item>
-        <ion-label><b>Name</b></ion-label>
-        {{currentCustomer.customerName}}
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Type</b></ion-label>
-        {{currentCustomer.customerTypeEnum}}
-      </ion-item>
-      <ion-item>
-        <ion-label><b>Email</b></ion-label>
-        {{currentCustomer.email}}
-      </ion-item>   
-      <ion-item>
-        <ion-button expand ="full" (click)=addNewCreditCardForm()>
-          Add new Credit Cards
-        </ion-button>
-      </ion-item>   
+    <ion-item>
+      <ion-label><b>Name</b></ion-label>
+      {{currentCustomer.customerName}}
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Type</b></ion-label>
+      {{currentCustomer.customerTypeEnum}}
+    </ion-item>
+    <ion-item>
+      <ion-label><b>Email</b></ion-label>
+      {{currentCustomer.email}}
+    </ion-item>
+    <ion-item>
+      <ion-button expand="full" (click)=addNewCreditCardForm()>
+        Add new Credit Cards
+      </ion-button>
+    </ion-item>
   </ion-card>
   <ion-card>
+    <ion-grid>
+      <ion-row style="background-color: #cdcfd6;;">
+        <ion-col col-3>
+          <b>Cards</b>
+        </ion-col>
+        <ion-col col-3>
+          <b>Card Number</b>
+        </ion-col>
+        <ion-col col-3>
+          <b>CVV</b>
+        </ion-col>
+        <ion-col col-3>
+          <b>Expiry Date</b>
+        </ion-col>
+        <ion-col col-3>
+          <b>Delete</b>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let p of creditcards; index as i" style="border: 2px solid #aeb7ca;">
+        <ion-col col-3><ion-icon name="card" style="font-size: 50px;"></ion-icon></ion-col>
+        <ion-col col-3 style="text-align: left;"> {{maskValueCCNumber(p)}} </ion-col>
+        <ion-col col-3> {{maskValueCCV()}}</ion-col>
+        <ion-col col-3> {{p.expiryDate}}</ion-col>
+        <ion-col col-3>
+          <ion-icon name="trash" style="font-size: 30px;" (click)="deleteCreditCard(p.creditCardId)"></ion-icon>>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </ion-card>
 

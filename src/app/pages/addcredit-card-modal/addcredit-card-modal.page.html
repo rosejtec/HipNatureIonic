@@ -32,7 +32,7 @@
             <ion-label>
               CreditCard Number:
             </ion-label>
-            <ion-input maxlength="16" #cardNumber="ngModel" inputmode="numeric" type="text" name="cardNumber"
+            <ion-input maxlength="16" minlength="16" #cardNumber="ngModel" inputmode="numeric" type="text" name="cardNumber"
               id="cardNumber" [(ngModel)]="newCreditCard.cardNumber" (keypress)="numericOnly($event)" required="true">
             </ion-input>
           </ion-item>
@@ -40,7 +40,7 @@
             <ion-label>
               ccv:
             </ion-label>
-            <ion-input #ccv="ngModel" inputmode="numeric" type="text" name="ccv" id="ccv" maxlength ="3"
+            <ion-input #ccv="ngModel" inputmode="numeric" type="text" name="ccv" id="ccv" maxlength ="3" minlength="3"
               [(ngModel)]="newCreditCard.cvv" (keypress)="numericOnly($event)" required="true">
             </ion-input>
           </ion-item>
@@ -48,7 +48,7 @@
             <ion-label>
               Expiry Date (MM/YY):
             </ion-label>
-            <ion-input #expiryDate="ngModel" inputmode="numeric" type="text" name="expiryDate" maxlength ="5"
+            <ion-input #expiryDate="ngModel" inputmode="numeric" type="text" name="expiryDate" maxlength ="5" minlength="5"
               id="expiryDate" [(ngModel)]="newCreditCard.expiryDate" required="true">
             </ion-input>
           </ion-item>

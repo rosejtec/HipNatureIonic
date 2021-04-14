@@ -11,28 +11,53 @@
 
 <ion-content>
   <ion-grid text-center>
+    <div style="color: red;text-align: center;">
+      {{message}}
+    </div>
     <ion-row>
       <ion-col style="text-align: center;">
-        PlaceHolder
+        {{cart.planName}}
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-card class="welcome-card">
+  <ion-card class="welcome-card" style="background-color: #cdcfd6;">
     <ion-card-header>
-      <ion-card-subtitle>Get Started</ion-card-subtitle>
-      <ion-card-title>Stripe Sample</ion-card-title>
+      <ion-card-title>Total Payment: ${{cart.price}}</ion-card-title>
+      <ion-card-subtitle>Plan Information:</ion-card-subtitle>
       <ion-row>
-        <ion-col>Total Payment</ion-col>
+        <ion-col>Credit Value: {{cart.creditValue}} </ion-col>
+        <ion-col>sessionLimit: {{cart.sessionLimit}} </ion-col>
       </ion-row>
     </ion-card-header>
     <ion-card-content>
       <form action="/" method="post" id="payment-form">
+        <div style="color: red;"
+          *ngIf="creditCardChosen == null">
+            Please Select a Credit Card
+        </div>
+        <div style="color: black; border-color: black;">
+          <ion-label>Select Payment Card (CC Number - Expiry Date)
+          </ion-label>
+          <ion-select placeholder="Select One" id="creditCardChosen" name="creditCardChosen" required="true"
+            [(ngModel)]="creditCardChosen" required="true">
+            <ion-select-option *ngFor="let c of creditcards" value="{{c.creditCardId}}" style="width: 30%;">
+              {{maskValueCCNumber(c)}} - {{c.expiryDate}}
+            </ion-select-option>
+          </ion-select>
+          <ion-label>Enter CVV</ion-label>
+          <ion-input #ccv="ngModel" inputmode="numeric" type="text" name="creditCardChosenCCV" id="creditCardChosenCCV" maxlength ="3" minlength="3"
+          [(ngModel)]="creditCardChosenCCV" required="true">
+          </ion-input>
+        </div>
         <div class="form-row">
-          <div id="card-element"> <!-- a Stripe Element will be inserted here. --> </div>
+          <div id="card-element">
+            <!-- a Stripe Element will be inserted here. -->
+          </div>
           <!-- Used to display Element errors -->
           <div id="card-errors" role="alert"></div>
         </div>
-        <ion-button type="submit" color="success" expand="full">Make Payment</ion-button>
+        <ion-button type="submit" color="success" expand="full" (click)="makePayment(cart)" [disabled]="checkRequire()">Make Payment
+        </ion-button>
       </form>
     </ion-card-content>
   </ion-card>
