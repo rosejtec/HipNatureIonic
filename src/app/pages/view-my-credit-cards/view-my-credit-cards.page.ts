@@ -58,7 +58,7 @@ export class ViewMyCreditCardsPage implements OnInit {
     console.log(value)
     const alert = await this.alertController.create({
       header: 'Confirm Delete Credit Card',
-      message: 'Confirm delete Credit Card <strong>' + value + '</strong>?',
+      message: 'Confirm delete Credit Card?',
       buttons: [
         {
           text: 'Cancel',
@@ -72,8 +72,7 @@ export class ViewMyCreditCardsPage implements OnInit {
           handler: () => {
             this.creditCardservice.deleteCreditCards(value).subscribe(
               response => {
-                this.resultSuccess = true;
-                  
+                 this.resultSuccess = true;
                   this.creditcards.splice(value, 1);
                   this.getAllCreditCard();
               },

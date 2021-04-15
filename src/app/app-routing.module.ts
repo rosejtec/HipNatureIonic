@@ -62,11 +62,12 @@ const routes: Routes = [
     path: 'addcredit-card-modal',
     loadChildren: () => import('./pages/addcredit-card-modal/addcredit-card-modal.module').then( m => m.AddcreditCardModalPageModule),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'view-my-bookings',
+    loadChildren: () => import('./pages/view-my-bookings/view-my-bookings.module').then( m => m.ViewMyBookingsPageModule),
+    canActivate:[AuthGuard]
   }
-
-
-
-
 ];
 
 @NgModule({

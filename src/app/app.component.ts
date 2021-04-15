@@ -33,6 +33,19 @@ export class AppComponent {
 
 	public appPagesMyInformation = [
 		{
+			title: 'View Payment Details',
+			url: "/view-my-credit-cards",
+			icon: 'card'
+		},
+		{
+			title: 'View My Bookings',
+			url: "/view-my-bookings",
+			icon: 'apps'
+		}
+	]
+
+	public appPagesClassAndPlan = [
+		{
 			title: 'View All Plans',
 			url: "/view-all-plans",
 			icon: 'add-circle'
@@ -41,12 +54,7 @@ export class AppComponent {
 		{
 			title: 'View All Classes',
 			url: "/view-all-classes",
-			icon: 'add-circle'
-		},
-		{
-			title: 'View Payment Details',
-			url: "/view-my-credit-cards",
-			icon: 'add-circle'
+			icon: 'list'
 		}
 	]
 
