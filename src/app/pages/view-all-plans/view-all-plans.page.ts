@@ -55,7 +55,7 @@ export class ViewAllPlansPage implements OnInit {
     let modal = await this.modalCtrl.create({
       component: PaymentModalPage,
     });
-    modal.onWillDismiss().then(() => {
+    modal.onWillDismiss().then(() => {    this.retrieveCurrentPlan();
     });
     modal.present();
   }

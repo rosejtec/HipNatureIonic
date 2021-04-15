@@ -58,6 +58,7 @@ export class CartModalPage implements OnInit {
     this.cartService.checkoutSession(this.cart).subscribe(response =>{
       this.resultSuccess = true;
       this.message = "Sessions successfully Registered";
+      this.cart = []
     },
     error => {
       this.resultError = true;
