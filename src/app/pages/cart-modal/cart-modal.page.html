@@ -61,7 +61,7 @@
         
     </ion-row>
 
-      <ion-button expand="full" (click)="makeCheckoutSession()">
+      <ion-button expand="full" (click)="makeCheckoutSession()" [disabled] ="getTotalSession() < 0">
         Checkout
       </ion-button>
 

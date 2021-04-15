@@ -36,7 +36,7 @@ export class CartModalPage implements OnInit {
     this.cartService.removeSession(product);
   }
   getTotalSession(){
-    return this.currentPlan.sessionLeft;
+    return (this.currentPlan.sessionLeft - this.cart.length)
   }
   retrieveCurrentPlan() {
     this.purchasePlanService.getCurrentPlan().subscribe(
@@ -61,7 +61,7 @@ export class CartModalPage implements OnInit {
     error => {
       this.resultError = true;
       this.resultSuccess = false;
-      this.message = "An error has occurred while creating new Customer: " + error;
+      this.message = "An error has occurred while creating new Booking: " + error;
     }
   )
   }

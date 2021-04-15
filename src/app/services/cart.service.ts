@@ -37,7 +37,7 @@ export class CartService {
   private cart = [];
   private cartItemCount = new BehaviorSubject(0);
 
-  baseUrl: string = "/api/Sessions";
+  baseUrl: string = "/api/Bookings";
 
   constructor(private httpClient: HttpClient,
     private commonService: CommonService) {
@@ -78,6 +78,7 @@ export class CartService {
     console.log("In Cart Service");
     console.log(sessionsArray)
     let checkoutSessionReq:CheckoutSessionReq = new CheckoutSessionReq(this.commonService.getUsername(), this.commonService.getPassword(), sessionsArray)
+    console.log("before http put request");
     return this.httpClient.put<number>(this.baseUrl,checkoutSessionReq , httpOptions).pipe
     (
       catchError(this.handleError)

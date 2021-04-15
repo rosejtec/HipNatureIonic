@@ -6,11 +6,17 @@
 
 <ion-content>
   <ion-card>
-    <ion-item>
+    <ion-item  text-wrap>
       <ion-label><b>Current Plan</b></ion-label>
-      <div *ngIf="currentPlan != null"> Status: ACTIVE </div>
-      <br><br/>
-      <div *ngIf="currentPlan != null"> Session Left: {{currentPlan.sessionLeft}}</div>
+      <div *ngIf="currentPlan != null"> 
+        <ion-row >
+          <b>Status:</b> ACTIVE  
+        </ion-row>
+        <ion-row >
+          <b>Session Left:</b> {{currentPlan.sessionLeft}}
+        </ion-row>
+        
+      </div>
     </ion-item>
   </ion-card>
     <ion-card *ngFor="let p of allPlans; let i = index">

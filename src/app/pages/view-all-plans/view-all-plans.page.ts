@@ -32,7 +32,7 @@ export class ViewAllPlansPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.retrieveCurrentPlan();
     this.planService.retrieveAllPlans().subscribe(
       response => {
         let plans: Plan[] = response;
@@ -47,7 +47,7 @@ export class ViewAllPlansPage implements OnInit {
   ngAfterViewInit() {
     console.log("afterinit");
     setTimeout(() => {
-      this.retrieveCurrentPlan();
+      
     }, 3000);
   }
   async openPlan(product) {
