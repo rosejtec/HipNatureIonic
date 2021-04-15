@@ -9,12 +9,15 @@
     <ion-item  text-wrap>
       <ion-label><b>Current Plan</b></ion-label>
       <div *ngIf="currentPlan != null"> 
-        <ion-row >
+        <ion-col >
           <b>Status:</b> ACTIVE  
-        </ion-row>
-        <ion-row >
+        </ion-col>
+        <ion-col >
           <b>Session Left:</b> {{currentPlan.sessionLeft}}
-        </ion-row>
+        </ion-col>
+        <ion-col >
+          <b>Expiry Date:</b> {{currentPlan.expiryDate}}
+        </ion-col>
         
       </div>
     </ion-item>
@@ -31,7 +34,7 @@
         <br>
 
         <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
-          <ion-button expand="block" (click)="openPlan(p)" disabled="currentPlan != null" >
+          <ion-button expand="block" (click)="openPlan(p)" [disabled]="currentPlan != null" >
             Buy
           </ion-button>
 

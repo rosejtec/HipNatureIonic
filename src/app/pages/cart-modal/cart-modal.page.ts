@@ -25,6 +25,7 @@ export class CartModalPage implements OnInit {
   ngOnInit() {
     this.cart = this.cartService.getCart();
     this.retrieveCurrentPlan();
+    console.log(this.currentPlan);
   }
   close() {
     this.modalCtrl.dismiss();

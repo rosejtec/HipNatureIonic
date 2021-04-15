@@ -67,7 +67,6 @@ export class ViewAllPlansPage implements OnInit {
         let temp: Purchasedplan = response;
         this.currentPlan = temp;
         JSON.stringify(this.currentPlan)
-        console.log(this.currentPlan)
       },
       error => {
         console.log(error);
