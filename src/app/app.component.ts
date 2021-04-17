@@ -39,7 +39,7 @@ export class AppComponent {
 		},
 		{
 			title: 'View My Bookings',
-			url: "/view-my-bookings",
+			url: "/view-anything-tabs/",
 			icon: 'apps'
 		}
 	]

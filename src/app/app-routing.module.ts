@@ -67,7 +67,24 @@ const routes: Routes = [
     path: 'view-my-bookings',
     loadChildren: () => import('./pages/view-my-bookings/view-my-bookings.module').then( m => m.ViewMyBookingsPageModule),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'view-anything-tabs',
+    loadChildren: () => import('./pages/view-anything-tabs/view-anything-tabs.module').then( m => m.ViewAnythingTabsPageModule)
+  },
+  {
+    path: 'view-my-past-bookings',
+    loadChildren: () => import('./pages/view-my-past-bookings/view-my-past-bookings.module').then( m => m.ViewMyPastBookingsPageModule)
+  },  {
+    path: 'my-transaction-history',
+    loadChildren: () => import('./pages/my-transaction-history/my-transaction-history.module').then( m => m.MyTransactionHistoryPageModule)
+  },
+  {
+    path: 'view-booking-detail-modal',
+    loadChildren: () => import('./pages/view-booking-detail-modal/view-booking-detail-modal.module').then( m => m.ViewBookingDetailModalPageModule)
   }
+
+
 ];
 
 @NgModule({

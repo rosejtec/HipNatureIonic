@@ -15,6 +15,7 @@ const httpOptions = {
 })
 export class MybookingsService {
 
+  selectedBookingToView: RetrieveBookingsByCusReq;
   baseUrl: string = "/api/Bookings";
 
   constructor(private httpClient: HttpClient,
