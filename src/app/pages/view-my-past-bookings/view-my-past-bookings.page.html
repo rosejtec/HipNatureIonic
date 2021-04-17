@@ -5,5 +5,32 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-grid>
+      <ion-row style="background-color: #cdcfd6;text-align: center;">
+        <ion-col>
+          <b>Booking Id</b>
+        </ion-col>
+        <ion-col>
+          <b>Session Name</b>
+        </ion-col>
+        <ion-col  (click) = "sortBy('startTime')">
+          <b>Start Time</b>
+          <ion-icon name="arrow-up" *ngIf="sortDirection == 1"></ion-icon>
+          <ion-icon name="arrow-down" *ngIf="sortDirection == 2"></ion-icon>
+        </ion-col>
+        <ion-col>
+          <b>End Time</b>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let p of myBooking; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;" (click) = "openBookingDetail(p)">
+        <ion-col> {{p.bookingId}} </ion-col>
+        <ion-col> {{p.sessionName}} </ion-col>
+        <ion-col> {{p.startTime}}</ion-col>
+        <ion-col> {{p.endTime}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
 
 </ion-content>

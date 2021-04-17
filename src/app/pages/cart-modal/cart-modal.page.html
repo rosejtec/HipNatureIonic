@@ -1,29 +1,29 @@
 <ion-content fullscreen>
- 
+
   <div class="ion-text-end">
     <ion-button (click)="close()" fill="clear" color="dark">
       <ion-icon name="close" slot="start"></ion-icon>
     </ion-button>
   </div>
- 
+
   <div class="ion-padding">
- <ion-row style="color: blue; text-align: center;">{{message}}</ion-row>
+    <ion-row style="color: blue; text-align: center;">{{message}}</ion-row>
     <ion-list>
       <ion-row>
         <ion-col>Session Id
         </ion-col>
         <ion-col>Class Name
         </ion-col>
-        <ion-col >StartTime
+        <ion-col>StartTime
         </ion-col>
-        <ion-col >EndTime
+        <ion-col>EndTime
         </ion-col>
-        <ion-col >Instructor
+        <ion-col>Instructor
         </ion-col>
-        <ion-col >Credit
+        <ion-col>Credit
         </ion-col>
       </ion-row>
-      <ion-item *ngFor="let p of cart" >
+      <ion-item *ngFor="let p of cart">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -32,10 +32,10 @@
             <ion-col>
               {{p.className}}
             </ion-col>
-            <ion-col >
+            <ion-col>
               {{p.startTime}}
             </ion-col>
-            <ion-col >
+            <ion-col>
               {{p.endTime}}
             </ion-col>
             <ion-col style="text-align: center;">
@@ -44,27 +44,31 @@
             <ion-col style="text-align: center;">
               {{p.credit}}
             </ion-col>
-              <ion-button color="medium" fill="clear" (click)="removeCartItem(p)">
-                <ion-icon name="close-circle" slot="icon-only"></ion-icon>
-              </ion-button>
+            <ion-button color="medium" fill="clear" (click)="removeCartItem(p)">
+              <ion-icon name="close-circle" slot="icon-only"></ion-icon>
+            </ion-button>
           </ion-row>
         </ion-grid>
       </ion-item>
     </ion-list>
     <ion-row style="float: right; font-size: larger; padding-right: 5%;">
       <ion-col style="float: left;">
+        <b>Credits Available(Left): {{getCreditsLeft()}}</b>
+      </ion-col>
+      <ion-col style="float: left;">
         <b>Session Available(Left): {{getTotalSession()}}</b>
       </ion-col>
       <ion-col style="float: right;">
         <b>Total Credits: {{getTotal()}}</b>
       </ion-col>
-        
+
     </ion-row>
 
-      <ion-button expand="full" (click)="makeCheckoutSession()" [disabled] ="getTotalSession() < 0">
-        Checkout
-      </ion-button>
+    <ion-button expand="full" (click)="makeCheckoutSession()"
+      [disabled]="getTotalSession() < 0 || getCreditsLeft() < 0">
+      Checkout
+    </ion-button>
 
   </div>
- 
+
 </ion-content>

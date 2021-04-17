@@ -29,6 +29,12 @@ export class MybookingsService {
         catchError(this.handleError)
       );
   }
+  retrieveMyPastBookings(): Observable<RetrieveBookingsByCusReq[]> {
+    return this.httpClient.get<RetrieveBookingsByCusReq[]>(this.baseUrl + "/retrieveMyPastBookings?username=" + this.commonService.getUsername() + "&password=" + this.commonService.getPassword()).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 

@@ -1,12 +1,15 @@
 <ion-header>
-  <ion-toolbar class="ion-text-end">
-    <ion-title>View Booking Detail Modal</ion-title>
-    <ion-button (click)="close()" fill="clear" color="dark">
-      <ion-icon name="close" slot="start"></ion-icon>
-    </ion-button>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">View Booking Detail Modal
+    </ion-title>
   </ion-toolbar>
-
 </ion-header>
+
+<div class="ion-text-end">
+  <ion-button (click)="close()" fill="clear" color="dark">
+    <ion-icon name="close" slot="start"></ion-icon>
+  </ion-button>
+</div>
 
 <ion-content>
 
@@ -69,7 +72,7 @@
       <ion-label>
         Purchase Id
       </ion-label>
-      {{selectedBookingToView.purchaseplanId}}
+      {{selectedBookingToView.purchasedplanId}}
     </ion-item>
     <ion-item>
       <ion-label>
@@ -77,6 +80,7 @@
       </ion-label>
       {{selectedBookingToView.expiryDate}}
     </ion-item>
+
   </ion-list>
 
 </ion-content>
