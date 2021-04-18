@@ -8,6 +8,7 @@ import { IndexPageRoutingModule } from './index-routing.module';
 
 import { IndexPage } from './index.page';
 import {RegisterPage} from '../register/register.page';
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {RegisterPage} from '../register/register.page';
     FormsModule,
     IonicModule,
     IndexPageRoutingModule,
+    NgCalendarModule,
   ],
   declarations: [IndexPage, RegisterPage],
 })

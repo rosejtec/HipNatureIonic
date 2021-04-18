@@ -74,6 +74,7 @@ export class LoginPage implements OnInit {
       }
       else {
       }
+      this.router.navigate(["/index"]);
   }
 
 
