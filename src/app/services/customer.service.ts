@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { Customer } from '../models/customer';
 import {CreateNewCustomerReq} from '../models/create-new-customer-req';
+import { UpdateCustomer } from '../models/update-customer';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -45,6 +46,15 @@ export class CustomerService {
         (
             catchError(this.handleError)
         );
+    }
+
+    updateCustomer(updateCustomer:Customer):  Observable<any>{
+        let updateCustomerReq: UpdateCustomer = new UpdateCustomer(this.commonService.getUsername(), this.commonService.getPassword(), updateCustomer);
+      
+      return this.httpClient.post<any>(this.baseUrl, updateCustomerReq, httpOptions).pipe
+      (
+        catchError(this.handleError)
+      );
     }
 
 

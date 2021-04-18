@@ -1,12 +1,15 @@
 import { Customer } from './../models/customer';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-constructor()
+constructor(private http: HttpClient)
 	{
 
 	}
@@ -31,6 +34,12 @@ constructor()
 		sessionStorage.isLogin = isLogin;
 	}
 
+	getData(url: string):  Observable<any> {
+        return this.http.get(url).pipe
+        (
+            catchError(this.handleError)
+        );
+    }
 
 
 	getCurrentCustomer(): Customer
@@ -72,4 +81,19 @@ constructor()
 	{
 		sessionStorage.password = password;
 	}
+
+	private handleError(error: HttpErrorResponse) {
+		let errorMessage: string = "";
+	
+		if (error.error instanceof ErrorEvent) {
+		  errorMessage = "An unknown error has occurred: " + error.error;
+		}
+		else {
+		  errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error}`;
+		}
+	
+		console.error(errorMessage);
+	
+		return throwError(errorMessage);
+	  }
 }

@@ -67,6 +67,10 @@ const routes: Routes = [
     path: 'view-my-bookings',
     loadChildren: () => import('./pages/view-my-bookings/view-my-bookings.module').then( m => m.ViewMyBookingsPageModule),
     canActivate:[AuthGuard]
+  },
+  {
+    path: 'view-my-profile',
+    loadChildren: () => import('./pages/view-my-profile/view-my-profile.module').then( m => m.ViewMyProfilePageModule)
   }
 ];
 
