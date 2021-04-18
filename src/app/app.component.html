@@ -1,6 +1,27 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
+   
     <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <div class="card">
+          <div class="header">
+            <div class="avatar">
+              <img src="{{profile?.image}}" alt="">
+            </div>
+          </div>
+        </div>
+      
+        <div class="card-body">
+          <div class="user-meta ion-text-center">
+            <h3 class="playername">{{currentCustomer.customerName}}</h3>
+            <h5 class="country">{{currentCustomer.email}}</h5>
+            <h6 class="ranking">Current Category: <ion-chip>
+              <ion-label>{{currentCustomer.customerTypeEnum}}</ion-label>
+              </ion-chip>
+            </h6>
+          </div>
+          </div>
+      </ion-content>
       <ion-content>
         <ion-list *ngIf="commonService.getIsLogin()">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogin; let i = index">

@@ -137,3 +137,65 @@ ion-fab-button {
   min-width: 25px;
   z-index: 10;
 }
+
+ion-content {
+  // –background: url(../../assets/background_full.jpg) no-repeat top center/cover fixed, #fff;
+  position: relative;
+  height: 20%;
+  width: 100%;
+}
+
+ion-toolbar {
+  –background: transparent;
+}
+
+.card {
+  margin: 0 auto;
+  padding-bottom: 0px;
+
+  .header {
+      height: 80px;
+
+      .avatar {
+          width: 80px;
+          height: 80px;
+          position: relative;
+          margin: 0 auto;
+
+          img {
+              display: block;
+              border-radius: 25%;
+              position: absolute;
+              bottom: calc(-1*(20px +1px));
+              border: 2px solid #9Dc912;
+              background-color: #fff;
+          }
+      }
+  }
+}
+
+.card-body {
+  background-color: #ffffff;
+  padding: 5px;
+  padding-bottom: 0px;
+  height: calc(25vh – (50px + 14px));
+  overflow: hidden;
+
+  .user-meta {
+      padding-top: 10px;
+
+
+      .playername {
+          font-size: 28px;
+          font-weight: 300;
+          color: #303940;
+      }
+
+      .country {
+          font-size: 80%;
+          color: #949ea6;
+          text-transform: lowercase;
+          margin: 0 auto;
+      }
+  }
+}
