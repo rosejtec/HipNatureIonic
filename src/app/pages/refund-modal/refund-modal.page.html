@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Refund Session:</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label style="text-align: center;"><b>Session Information</b></ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Session Name
+    </ion-label>
+    {{selectedBookingToView.sessionName}}
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Session Start Time
+    </ion-label>
+    {{selectedBookingToView.startTime}}
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      Session End Time
+    </ion-label>
+    {{selectedBookingToView.endTime}}
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      Venue
+    </ion-label>
+    {{selectedBookingToView.venue}}
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      Instructor Name
+    </ion-label>
+    {{selectedBookingToView.instructor}}
+  </ion-item>
+  <ion-button expand="block" (click)="doRefund()">Refund</ion-button>
+</ion-content>

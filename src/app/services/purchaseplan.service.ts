@@ -25,8 +25,6 @@ export class PurchaseplanService {
   }
   makePurchasePlan(ccId:number, planId:Plan):Observable<number>{
     let purchaseplanreq:PurchaseplanReq = new PurchaseplanReq (this.commonService.getUsername(), this.commonService.getPassword(), planId.planId, ccId);
-    console.log(purchaseplanreq.password)
-    console.log(purchaseplanreq.username)
     return this.httpClient.put<number>(this.baseUrl,purchaseplanreq, httpOptions).pipe
     (
       catchError(this.handleError)

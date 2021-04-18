@@ -37,7 +37,14 @@ export class CartModalPage implements OnInit {
     this.cartService.removeSession(product);
   }
   getTotalSession(){
-    return (this.currentPlan.sessionLeft - this.cart.length)
+    if (this.currentPlan != null){
+      return (this.currentPlan.sessionLeft - this.cart.length)
+    }
+  }
+  getCreditsLeft(){
+    if (this.currentPlan != null) {
+      return (this.currentPlan.creditValue - this.getTotal())
+    }
   }
   retrieveCurrentPlan() {
     this.purchasePlanService.getCurrentPlan().subscribe(
@@ -59,6 +66,9 @@ export class CartModalPage implements OnInit {
       this.resultSuccess = true;
       this.message = "Sessions successfully Registered";
       this.cart = []
+      this.cartService.emptyCart();
+      this.getTotalSession();
+      this.getCreditsLeft();
     },
     error => {
       this.resultError = true;

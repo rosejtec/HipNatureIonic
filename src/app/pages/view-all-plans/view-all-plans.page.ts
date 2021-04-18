@@ -10,6 +10,8 @@ import { PurchaseplanService } from '../../services/purchaseplan.service';
 import { ModalController } from '@ionic/angular';
 import { PaymentModalPage } from '../payment-modal/payment-modal.page';
 import { Purchasedplan } from 'src/app/models/purchasedplan';
+import { CreditPlan } from 'src/app/models/credit-plan';
+import { CreditplanService } from 'src/app/services/creditplan.service';
 
 
 @Component({
@@ -22,12 +24,13 @@ export class ViewAllPlansPage implements OnInit {
   @ViewChild('planDetails', { static: false, read: ElementRef }) fab: ElementRef;
   planDetails: Plan;
   currentPlan: Purchasedplan;
+  creditPlan: CreditPlan[] = [];
 
   allPlans: Plan[];
 
 
 
-  constructor(private purchaseplanService: PurchaseplanService, private router: Router, public commonService: CommonService, public planService: PlanService, private modalCtrl: ModalController) {
+  constructor(private creditPlanService: CreditplanService, private purchaseplanService: PurchaseplanService, private router: Router, public commonService: CommonService, public planService: PlanService, private modalCtrl: ModalController) {
     this.currentPlan =  null
   }
 
@@ -42,6 +45,16 @@ export class ViewAllPlansPage implements OnInit {
         console.log(error);
       }
     );
+
+    this.creditPlanService.retrieveAllPlans().subscribe(
+      response =>{
+        this.creditPlan = response;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    console.log(this.creditPlan);
    
   }
   ngAfterViewInit() {

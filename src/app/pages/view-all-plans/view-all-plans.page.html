@@ -6,39 +6,54 @@
 
 <ion-content>
   <ion-card>
-    <ion-item  text-wrap>
+    <ion-item text-wrap>
       <ion-label><b>Current Plan</b></ion-label>
-      <div *ngIf="currentPlan != null"> 
-        <ion-col >
-          <b>Status:</b> ACTIVE  
+      <div *ngIf="currentPlan != null">
+        <ion-col>
+          <b>Credit Value:</b> {{currentPlan.creditValue}}
         </ion-col>
-        <ion-col >
+        <ion-col>
           <b>Session Left:</b> {{currentPlan.sessionLeft}}
         </ion-col>
-        <ion-col >
+        <ion-col>
           <b>Expiry Date:</b> {{currentPlan.expiryDate}}
         </ion-col>
-        
+
       </div>
     </ion-item>
   </ion-card>
-    <ion-card *ngFor="let p of allPlans; let i = index">
-      <ion-card-header>
-        <ion-card-title>{{p.planName}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        
-        <ion-label>Price: ${{p.price}}</ion-label>
+  <ion-card *ngFor="let p of allPlans; let i = index">
+    <ion-card-header>
+      <ion-card-title>{{p.planName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-label>Price: ${{p.price}}</ion-label>
       <br>
-        <ion-label>Session Limit: {{p.sessionLimit}}</ion-label>
-        <br>
+      <ion-label>Session Limit: {{p.sessionLimit}}</ion-label>
+      <br>
 
-        <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
-          <ion-button expand="block" (click)="openPlan(p)" [disabled]="currentPlan != null" >
-            Buy
-          </ion-button>
+      <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
+      <ion-button expand="block" (click)="openPlan(p)" [disabled]="currentPlan != null">
+        Buy
+      </ion-button>
 
-      </ion-card-content>
-      
-    </ion-card>    
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card *ngFor="let p of creditPlan; let i = index">
+    <ion-card-header>
+      <ion-card-title>Credit Plan {{p.creditPlanId}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>Price: ${{p.price}}</ion-label>
+      <br>
+      <ion-label>CreditLimit: {{p.creditValue}}</ion-label>
+      <ion-button expand="block" (click)="openPlan(p)">
+        Buy
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
 </ion-content>

@@ -21,7 +21,6 @@ export class CreditcardService {
 
   constructor(private httpClient: HttpClient,
     private commonService: CommonService) {
-    console.log(commonService.getIsLogin())
   }
 
 

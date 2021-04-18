@@ -15,6 +15,7 @@ const httpOptions = {
 })
 export class MybookingsService {
 
+  selectedBookingToView: RetrieveBookingsByCusReq;
   baseUrl: string = "/api/Bookings";
 
   constructor(private httpClient: HttpClient,
@@ -24,6 +25,12 @@ export class MybookingsService {
 
   retrieveMyBookings(): Observable<RetrieveBookingsByCusReq[]> {
     return this.httpClient.get<RetrieveBookingsByCusReq[]>(this.baseUrl + "/retrieveMyBookings?username=" + this.commonService.getUsername() + "&password=" + this.commonService.getPassword()).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+  retrieveMyPastBookings(): Observable<RetrieveBookingsByCusReq[]> {
+    return this.httpClient.get<RetrieveBookingsByCusReq[]>(this.baseUrl + "/retrieveMyPastBookings?username=" + this.commonService.getUsername() + "&password=" + this.commonService.getPassword()).pipe
       (
         catchError(this.handleError)
       );

@@ -1,13 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Bookings</ion-title>
+    <ion-title>Past Bookings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card style="font-size: 17px; text-align: center;">
-    Any Cancellation (Refund) before 3 days of the Session Start Time <b>Will Not Be Entited To Any Refund</b>
-  </ion-card>
   <ion-card>
     <ion-grid>
       <ion-row style="background-color: #cdcfd6;text-align: center;">
@@ -25,18 +22,12 @@
         <ion-col>
           <b>End Time</b>
         </ion-col>
-        <ion-col>
-          <b>Refund</b>
-        </ion-col>
       </ion-row>
       <ion-row *ngFor="let p of myBooking; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;" (click) = "openBookingDetail(p)">
         <ion-col> {{p.bookingId}} </ion-col>
         <ion-col> {{p.sessionName}} </ion-col>
         <ion-col> {{p.startTime}}</ion-col>
         <ion-col> {{p.endTime}}</ion-col>
-        <ion-col>
-          <ion-icon name="cash" style="font-size: 30px;" (click) ="doRefund(p);$event.stopPropagation();"></ion-icon>
-        </ion-col>
       </ion-row>
     </ion-grid>
 

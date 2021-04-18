@@ -47,6 +47,10 @@ export class CartService {
   getCart() {
     return this.cart;
   }
+  emptyCart(){
+    this.cart = [];
+    this.cartItemCount =  new BehaviorSubject(0);
+  }
  
   getCartItemCount() {
     return this.cartItemCount;
