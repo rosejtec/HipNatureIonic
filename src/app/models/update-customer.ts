@@ -1,18 +1,26 @@
 import { Customer } from './customer';
+import {CustomerTypeEnum} from './customer-type-enum.enum'
 export class UpdateCustomer {
 
-    customer: Customer|undefined
-    username: string |undefined
-    password: string |undefined
+  customerId: number | undefined
+  customerName: string | undefined
+  phone: string | undefined
+  customerTypeEnum: CustomerTypeEnum | undefined
+  email: string | undefined
+  password: string | undefined
+  username: string | undefined
+  address: string | undefined
+
 
     constructor(
-      username?:string,
-        password?: string,
-        customer?: Customer
-        
-      ) {
-        this.password = password;
-        this.username = username;
-        this.customer=customer;
+      customerId?: number, customerName?: string, phone?: string,customerTypeEnum?: CustomerTypeEnum, email?: string, password?: string, username?: string, address?: string) {
+        this.customerTypeEnum = customerTypeEnum
+        this.customerName = customerName
+        this.customerId = customerId
+        this.phone = phone
+        this.email = email
+        this.username = username
+        this.password = password
+        this.address = address
       }
 }

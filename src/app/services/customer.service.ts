@@ -31,6 +31,8 @@ export class CustomerService {
 
     customerLogin(username: string | undefined, password: string | undefined): Observable<Customer>
     {
+        console.log(username)
+        console.log(password)
         return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
         (
             catchError(this.handleError)
@@ -49,8 +51,10 @@ export class CustomerService {
     }
 
     updateCustomer(updateCustomer:Customer):  Observable<any>{
-        let updateCustomerReq: UpdateCustomer = new UpdateCustomer(this.commonService.getUsername(), this.commonService.getPassword(), updateCustomer);
-      
+        let updateCustomerReq: UpdateCustomer = new UpdateCustomer(updateCustomer.customerId, updateCustomer.customerName, updateCustomer.phone,updateCustomer.customerTypeEnum,updateCustomer.email,this.commonService.getPassword(), this.commonService.getUsername(),updateCustomer.address);
+        console.log(updateCustomerReq)
+
+
       return this.httpClient.post<any>(this.baseUrl, updateCustomerReq, httpOptions).pipe
       (
         catchError(this.handleError)

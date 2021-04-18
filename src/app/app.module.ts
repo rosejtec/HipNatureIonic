@@ -26,7 +26,9 @@ import {Stripe} from '@ionic-native/stripe/ngx';
     FormsModule, 
     HttpClientModule,
     CartModalPageModule,
-    Ng2SearchPipeModule],
+    Ng2SearchPipeModule,
+    
+  ],
   providers: [Stripe,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

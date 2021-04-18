@@ -10,6 +10,7 @@ import { CreateReviewReq} from '../models/create-review-req';
 
 import { CommonService } from './common.service'
 import { Review } from '../models/review';
+import { GetReviews } from '../models/get-reviews';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })

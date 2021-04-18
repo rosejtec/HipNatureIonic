@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #updateCustomer="ngForm" (ngSubmit)="create(updateCustomer)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+
+          <div *ngIf="customerName.invalid && (customerName.dirty || customerName.touched || submitted)" class="errorText">
+            <div *ngIf="customerName.errors.required">
+              Description is required.
+            </div>
+          </div>
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Username :</b></ion-label>
+            <ion-input type="username" id="username" name="username" [(ngModel)]="currentCustomer.username" required="true" #username="ngModel">
+            </ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label><b>Name :</b></ion-label>
+            <ion-input type="text" id="customerName" name="customerName" [(ngModel)]="currentCustomer.customerName"
+              required="true" #customerName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Email :</b></ion-label>
+            <ion-input type="text" id="email" name="email" [(ngModel)]="currentCustomer.email" required="true" #emai="ngModel">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Phone :</b></ion-label>
+            <ion-input type="number" id="phone" name="phone" [(ngModel)]="currentCustomer.phone" required="true" #phone="ngModel">
+            </ion-input>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button type="submit" ion-button block>
+          Update
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

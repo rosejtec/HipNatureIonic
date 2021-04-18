@@ -7,12 +7,11 @@ import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../models/customer';
 import { CustomerTypeEnum } from '../../models/customer-type-enum.enum';
 @Component({
-  selector: 'app-view-my-profile',
-  templateUrl: './view-my-profile.page.html',
-  styleUrls: ['./view-my-profile.page.scss'],
+  selector: 'app-update-my-profile',
+  templateUrl: './update-my-profile.page.html',
+  styleUrls: ['./update-my-profile.page.scss'],
 })
-export class ViewMyProfilePage implements OnInit {
-
+export class UpdateMyProfilePage implements OnInit {
   currentCustomer: Customer;
   error: boolean;
   errorMessage: string;
@@ -20,41 +19,23 @@ export class ViewMyProfilePage implements OnInit {
   resultError: boolean;
   message: string;
   submitted:boolean;
-  localPath: string = '/assets/data.json';
-  profile: Array<any>;
-  comments: Array<any>;
-  inputComment: string;
-  likesNr: number;
-  followingNr: number;
-  followersNr: number;
-  buttonClicked: boolean = true;
-
 
   constructor(private router: Router,private commonService: CommonService, private customerService: CustomerService) {
     this.error = false;
     this.resultSuccess = false;
     this.submitted = false;
     this.resultSuccess = false;
-    this.resultError = false;
-    this.loadData();
     this.currentCustomer = this.commonService.getCurrentCustomer();
+    
 
 
   }
 
-  loadData() {
-    this.commonService.getData(this.localPath).subscribe(data => {
-        this.profile = data.profile;
-        this.comments = data.comments;
-        this.likesNr = data.profile.likes;
-        this.followingNr = data.profile.following;
-        this.followersNr = data.profile.followers;
-    });
-}
+
   ngOnInit() {
     console.log(this.commonService.getCurrentCustomer())
     this.currentCustomer = this.commonService.getCurrentCustomer();
-    
+    console.log(this.currentCustomer)
   }
 
   create(updateCustomer: NgForm) {
@@ -64,13 +45,28 @@ export class ViewMyProfilePage implements OnInit {
     if (updateCustomer.valid) {
       this.customerService.updateCustomer(this.currentCustomer).subscribe(
         response => {
-          let customerId: number = response;
-          console.log(customerId)
+          console.log(response);
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "Customer Updated " + customerId + " created successfully";
+          this.message = "Customer Updated " + this.currentCustomer.customerId + " created successfully";
           this.submitted = false;
-          updateCustomer.reset();
+
+
+          this.customerService.customerLogin(this.commonService.getUsername(), this.commonService.getPassword()).subscribe(
+              response => {
+                this.currentCustomer = response
+                  this.commonService.setCurrentCustomer(this.currentCustomer);
+
+                  console.log(this.commonService.getCurrentCustomer)
+
+                  if (this.currentCustomer != null) {
+                      this.commonService.setIsLogin(true);
+                      this.commonService.setCurrentCustomer(this.currentCustomer);
+                  }
+
+              }
+          );
+      
         },
         error => {
           this.resultError = true;
@@ -83,35 +79,7 @@ export class ViewMyProfilePage implements OnInit {
     }
   }
 
-  favIconTapped() {
-    this.likesNr = this.likesNr + 1;
-    console.log(this.likesNr);
-}
-
-followTapped() {
-    this.followingNr = this.followingNr + 1;
-    this.followersNr = this.followersNr + 1;
-}
-
-shareTapped() {
-    let queryString = window.location.href;
-    alert(queryString);
-}
-
-onButtonClick() {
-    this.buttonClicked = !this.buttonClicked;
-}
-
-editCustomer(event) {
-  this.router.navigate(["/update-my-profile/"]);
-}
-
-booking(event) {
-  this.router.navigate(["/view-my-bookings/"]);
-}
-plan(event) {
-  this.router.navigate(["/view-my-credit-cards/"]);
-}
-
-
+  back() {
+    this.router.navigate(["/view-my-profile"]);
+  }
 }

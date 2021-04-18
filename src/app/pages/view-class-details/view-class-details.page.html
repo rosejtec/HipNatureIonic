@@ -80,6 +80,10 @@
                 <ion-label range-left>1</ion-label>
                 <ion-label range-right>5</ion-label>
               </ion-range>
+              <!-- <div>
+                <ion-icon name="star" *ngFor="let num1 of [1,2,3,4,5]" click="rate(num1)" [ngStyle]="{'color': getColor(num1)}">
+                </ion-icon>
+              </div> -->
             </ion-item>
   
           </ion-list>
@@ -109,11 +113,13 @@
     </ion-item>
     <ion-card *ngFor="let p of reviews; let i = index">
       <ion-card-header>
-        <ion-card-title>{{p.reviewId}}</ion-card-title>
+        <ion-card-title>{{p.customerName}}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        
-        <ion-label>{{p.reviewRating}}</ion-label>
+        <ion-buttons slot="end">
+          <ion-icon slot="end" name="star" *ngFor="let num of [1,2,3,4,5]" [(ngModel)]="p.reviewRating" [ngStyle]="{'color': getColorFixed(num,p.reviewRating)}">
+          </ion-icon>
+          </ion-buttons>
       <br>
         <ion-label>{{p.description}}</ion-label>
         <br>

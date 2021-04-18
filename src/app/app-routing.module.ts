@@ -75,7 +75,8 @@ const routes: Routes = [
   {
     path: 'view-my-past-bookings',
     loadChildren: () => import('./pages/view-my-past-bookings/view-my-past-bookings.module').then( m => m.ViewMyPastBookingsPageModule)
-  },  {
+  },
+  {
     path: 'my-transaction-history',
     loadChildren: () => import('./pages/my-transaction-history/my-transaction-history.module').then( m => m.MyTransactionHistoryPageModule)
   },
@@ -84,7 +85,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/view-booking-detail-modal/view-booking-detail-modal.module').then( m => m.ViewBookingDetailModalPageModule)
   },
   {
-<<<<<<< HEAD
     path: 'view-my-bookings',
     loadChildren: () => import('./pages/view-my-bookings/view-my-bookings.module').then( m => m.ViewMyBookingsPageModule),
     canActivate:[AuthGuard]
@@ -92,11 +92,15 @@ const routes: Routes = [
   {
     path: 'view-my-profile',
     loadChildren: () => import('./pages/view-my-profile/view-my-profile.module').then( m => m.ViewMyProfilePageModule)
-=======
+  },
+  {
     path: 'refund-modal',
     loadChildren: () => import('./pages/refund-modal/refund-modal.module').then( m => m.RefundModalPageModule)
->>>>>>> 4d9a7cafeaabeca6b908999e6e4cc59610017ca0
+  },  {
+    path: 'update-my-profile',
+    loadChildren: () => import('./pages/update-my-profile/update-my-profile.module').then( m => m.UpdateMyProfilePageModule)
   }
+
 
 
 ];
