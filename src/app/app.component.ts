@@ -69,7 +69,7 @@ export class AppComponent {
 	  }
 
 	ngOnChanges() {
-		
+
 	}
 
 	addToCart(product) {
@@ -87,6 +87,8 @@ export class AppComponent {
 		modal.onWillDismiss().then(() => {
 		  this.fab.nativeElement.classList.remove('animated', 'bounceOutLeft')
 		  this.animateCSS('bounceInLeft');
+		  this.cart = this.cartService.getCart();
+		  this.cartItemCount = this.cartService.getCartItemCount();
 		});
 		modal.present();
 	  }

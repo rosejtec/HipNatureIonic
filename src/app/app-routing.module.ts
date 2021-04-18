@@ -82,6 +82,10 @@ const routes: Routes = [
   {
     path: 'view-booking-detail-modal',
     loadChildren: () => import('./pages/view-booking-detail-modal/view-booking-detail-modal.module').then( m => m.ViewBookingDetailModalPageModule)
+  },
+  {
+    path: 'refund-modal',
+    loadChildren: () => import('./pages/refund-modal/refund-modal.module').then( m => m.RefundModalPageModule)
   }
 
 

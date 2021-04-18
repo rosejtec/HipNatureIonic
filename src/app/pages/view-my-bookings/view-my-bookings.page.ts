@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { RetrieveBookingsByCusReq } from 'src/app/models/retrieve-bookings-by-cus-req';
 import { MybookingsService } from 'src/app/services/mybookings.service';
+import { RefundModalPage } from '../refund-modal/refund-modal.page';
 import { ViewBookingDetailModalPage } from '../view-booking-detail-modal/view-booking-detail-modal.page';
 
 @Component({
@@ -11,6 +12,7 @@ import { ViewBookingDetailModalPage } from '../view-booking-detail-modal/view-bo
 })
 export class ViewMyBookingsPage implements OnInit {
   @ViewChild('planDetails', { static: false, read: ElementRef }) fab: ElementRef;
+  @ViewChild('refundDetails', { static: false, read: ElementRef }) fab2: ElementRef;
   myBooking: RetrieveBookingsByCusReq[];
   sortkey = 'startTime';
   sortDirection = 2;
@@ -88,7 +90,13 @@ export class ViewMyBookingsPage implements OnInit {
           }
         }, {
           text: 'Okay',
-          handler: () => {
+          handler: async () => {
+            let modal = await this.modalCtrl.create({
+              component: RefundModalPage,
+            });
+            modal.onWillDismiss().then(() => {   
+            });
+            modal.present();
           },
           
         }
