@@ -63,7 +63,7 @@
   </ion-row>
 
   <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
-    (onTitleChanged)="onViewChanged($event)">
+    (onTitleChanged)="onViewChanged($event)" (onEventSelected)="selectedEvent($event)">
   </calendar>
 
 </ion-content>
