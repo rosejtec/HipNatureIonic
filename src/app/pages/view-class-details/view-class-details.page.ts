@@ -27,7 +27,7 @@ export class ViewClassDetailsPage implements OnInit {
   error: boolean
   errorMessage: string
   resultSuccess: boolean
-  reviews: Review[]
+  reviews: GetReviews[]
   resultError: boolean
   message: string
   submitted: boolean

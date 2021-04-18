@@ -113,18 +113,21 @@
     </ion-item>
     <ion-card *ngFor="let p of reviews; let i = index">
       <ion-card-header>
+        <ion-toolbar>
+
         <ion-card-title>{{p.customerName}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
         <ion-buttons slot="end">
-          <ion-icon slot="end" name="star" *ngFor="let num of [1,2,3,4,5]" [(ngModel)]="p.reviewRating" [ngStyle]="{'color': getColorFixed(num,p.reviewRating)}">
+          <ion-icon  slot="end" name="star" *ngFor="let num of [1,2,3,4,5]" [(ngModel)]="p.reviewRating" [ngStyle]="{'color': getColorFixed(num,p.reviewRating)}">
           </ion-icon>
           </ion-buttons>
-      <br>
-        <ion-label>{{p.description}}</ion-label>
-        <br>
+        </ion-toolbar>
 
-
+      </ion-card-header>
+      <ion-card-content>
+      <ion-item>
+        <ion-label>Comment : {{p.description}}</ion-label>
+      </ion-item>
+ 
       </ion-card-content>
       
     </ion-card>    

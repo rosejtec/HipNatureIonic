@@ -30,9 +30,9 @@ export class ReviewService {
     console.log(commonService.getIsLogin())
   }
 
-  getAllReviewsByClassId(classId: number): Observable<Review[]>
+  getAllReviewsByClassId(classId: number): Observable<GetReviews[]>
   {
-    return this.httpClient.get<Review[]>(this.baseUrl + "/retrieveReviewsByClassId/" + classId).pipe
+    return this.httpClient.get<GetReviews[]>(this.baseUrl + "/retrieveReviewsByClassId/" + classId).pipe
     (
       catchError(this.handleError)
     );
