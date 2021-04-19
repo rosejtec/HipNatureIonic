@@ -38,7 +38,7 @@ export class PlanService {
 
   retrieveAllPlans(): Observable<Plan[]>
     {
-        return this.httpClient.get<Plan[]>(this.baseUrl + "/retrieveAllPlans").pipe
+        return this.httpClient.get<Plan[]>(this.baseUrl + "/retrieveAllPlans?username=" + this.commonService.getUsername() +"&password=" + this.commonService.getPassword()).pipe
         (
             catchError(this.handleError)
         );
