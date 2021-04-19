@@ -73,6 +73,9 @@ export class ViewAllPlansPage implements OnInit {
     modal.present();
   }
 
+  getCustomerType(){
+    return this.commonService.getCurrentCustomer().customerTypeEnum;
+  }
 
   retrieveCurrentPlan() {
     this.purchaseplanService.getCurrentPlan().subscribe(
