@@ -35,5 +35,17 @@
     <ion-button expand="full" color="secondary" (click)="plan($event)">View My Payment Details</ion-button>
   </div>
 
-  
+  <h2>File Upload</h2>
+
+  <!-- <img *ngIf="showImage" src="http://localhost:8080/HipNatureRS/Resources/uploadedFiles/{{fileName}}" /> -->
+  <img *ngIf="fileToUpload" [src]="fileToUpload"/>
+
+  <br/><hr/><br/>
+
+  <ion-button expand="full">
+    <ion-icon lazy="true" slot="start" name="image"></ion-icon>
+    <ion-label slot="end">Upload Image</ion-label>
+  <input type="file" id="file" (change)="handleFileInput($event)">
+</ion-button>
+
 </ion-content>

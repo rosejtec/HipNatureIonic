@@ -2,8 +2,7 @@
   <ion-split-pane contentId="main-content">
    
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <div class="card">
+        <!-- <div class="card">
           <div class="header">
             <div class="avatar">
               <img src="{{profile?.image}}" alt="">
@@ -20,8 +19,7 @@
               </ion-chip>
             </h6>
           </div>
-          </div>
-      </ion-content>
+          </div> -->
       <ion-content>
         <ion-list *ngIf="commonService.getIsLogin()">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesLogin; let i = index">

@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 
 import { CommonService } from '../../services/common.service';
 import { CustomerService } from '../../services/customer.service';
+import { FileUploadService } from '../../services/file-upload.service';
+
 import { Customer } from '../../models/customer';
 import { CustomerTypeEnum } from '../../models/customer-type-enum.enum';
 @Component({
@@ -22,15 +24,13 @@ export class ViewMyProfilePage implements OnInit {
   submitted:boolean;
   localPath: string = '/assets/data.json';
   profile: Array<any>;
-  comments: Array<any>;
-  inputComment: string;
-  likesNr: number;
-  followingNr: number;
-  followersNr: number;
-  buttonClicked: boolean = true;
+  showImage: boolean;
+  useCustomUpload: boolean;
+  fileName: String | null;
+  fileToUpload: File | null;
 
 
-  constructor(private router: Router,private commonService: CommonService, private customerService: CustomerService) {
+  constructor(private fileUploadService: FileUploadService,private router: Router,private commonService: CommonService, private customerService: CustomerService) {
     this.error = false;
     this.resultSuccess = false;
     this.submitted = false;
@@ -38,17 +38,17 @@ export class ViewMyProfilePage implements OnInit {
     this.resultError = false;
     this.loadData();
     this.currentCustomer = this.commonService.getCurrentCustomer();
-
+    this.showImage = false;
+    this.useCustomUpload = true;
+    this.fileName = null;
+    this.fileToUpload = null;
 
   }
 
   loadData() {
     this.commonService.getData(this.localPath).subscribe(data => {
         this.profile = data.profile;
-        this.comments = data.comments;
-        this.likesNr = data.profile.likes;
-        this.followingNr = data.profile.following;
-        this.followersNr = data.profile.followers;
+
     });
 }
   ngOnInit() {
@@ -83,24 +83,27 @@ export class ViewMyProfilePage implements OnInit {
     }
   }
 
-  favIconTapped() {
-    this.likesNr = this.likesNr + 1;
-    console.log(this.likesNr);
-}
+  handleFileInput(event: any) {
+    
+    this.fileToUpload = event.target.files.item(0);
 
-followTapped() {
-    this.followingNr = this.followingNr + 1;
-    this.followersNr = this.followersNr + 1;
-}
+    if(this.fileToUpload != null)
+    {
+      this.fileName = this.fileToUpload.name;      
 
-shareTapped() {
-    let queryString = window.location.href;
-    alert(queryString);
-}
+      this.fileUploadService.uploadFile(this.fileToUpload).subscribe(
+        response => {
+          this.showImage = true;
+          console.log('********** FileUploadComponent.ts: File uploaded successfully: ' + response.status);
+        },
+        error => {
+          this.showImage = true;
+          console.log('********** FileUploadComponent.ts: ' + error);
+        }
+      );
+    }
+  }
 
-onButtonClick() {
-    this.buttonClicked = !this.buttonClicked;
-}
 
 editCustomer(event) {
   this.router.navigate(["/update-my-profile/"]);
