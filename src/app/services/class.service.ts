@@ -1,3 +1,4 @@
+import { Partner } from './../models/partner';
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
@@ -34,6 +35,14 @@ export class ClassService {
     getClassByClassId(classId: number): Observable<Class>
     {
       return this.httpClient.get<Class>(this.baseUrl + "/retrieveClass/" + classId).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
+    getPartnerByClass(classId: number): Observable<Partner>
+    {
+      return this.httpClient.get<Partner>(this.baseUrl + "/retrievePartnerByClass/" + classId).pipe
       (
         catchError(this.handleError)
       );

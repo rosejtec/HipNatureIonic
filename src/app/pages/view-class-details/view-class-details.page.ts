@@ -1,3 +1,4 @@
+import { Partner } from './../../models/partner';
 import { AppRoutingModule } from './../../app-routing.module'
 import { ViewAllClassesPageModule } from './../view-all-classes/view-all-classes.module'
 import { Component, OnInit,EventEmitter ,Output } from '@angular/core'
@@ -32,6 +33,7 @@ export class ViewClassDetailsPage implements OnInit {
   message: string
   submitted: boolean
   newReview: Review
+  partner:Partner
   // @Output() ratingChange: EventEmitter<number> = new EventEmitter();
 
   constructor(
@@ -60,6 +62,7 @@ export class ViewClassDetailsPage implements OnInit {
     )
     this.refreshClass()
     this.refreshReview()
+    this.refreshPartner()
     this.newReview = new Review()
     console.log(this.retrieveClassError)
   }
@@ -90,6 +93,21 @@ export class ViewClassDetailsPage implements OnInit {
     )
     console.log(this.retrieveClassError)
   }
+
+  async refreshPartner() {
+    this.classService.getPartnerByClass(this.classId).subscribe(
+      (response) => {
+        this.partner = response
+        console.log(this.partner)
+      },
+      (error) => {
+        this.retrieveClassError = true
+        console.log('********** ViewClassPartnerPage.ts: ' + error)
+      },
+    )
+    console.log(this.retrieveClassError)
+  }
+
   viewSessionsDetails(event, p) {
     console.log(p)
     this.router.navigate(['/view-aclass-sessions/' + p])

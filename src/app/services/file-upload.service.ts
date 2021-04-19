@@ -42,28 +42,7 @@ export class FileUploadService
     }
   }
 
-  getImage()
-  {
-    let url = "http://localhost:8080/HipNatureRS/uploadedFiles/" + this.commonService.getCurrentCustomer().email;
-    var request = new XMLHttpRequest();
-  request.open("GET", url, true);
-  request.send();
-  request.onload = function() {
-    let status = request.status;
-    if (request.status == 200) //if(statusText == OK)
-    {
-      return true;
-    } else {
-       return false;
-    }
-  }
-    // console.log(url)
-    //   return this.httpClient.get<any>(url).pipe
-    //   (
-    //       catchError(this.handleError)
-    //   );
-  }
-
+  
 
   private handleError(error: HttpErrorResponse)
   {
