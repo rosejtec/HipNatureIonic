@@ -67,8 +67,7 @@ export class CartModalPage implements OnInit {
       this.message = "Sessions successfully Registered";
       this.cart = []
       this.cartService.emptyCart();
-      this.getTotalSession();
-      this.getCreditsLeft();
+      this.retrieveCurrentPlan();
     },
     error => {
       this.resultError = true;

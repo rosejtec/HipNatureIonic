@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar';
 import { RetrieveBookingsByCusReq } from 'src/app/models/retrieve-bookings-by-cus-req';
 import { MybookingsService } from 'src/app/services/mybookings.service';
@@ -22,7 +22,7 @@ export class IndexPage implements OnInit {
   };
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
-  constructor(public commonService: CommonService, private myBookingService: MybookingsService, private modalCtrl: ModalController) {
+  constructor(public loadingController: LoadingController, public commonService: CommonService, private myBookingService: MybookingsService, private modalCtrl: ModalController) {
     this.currentBooking = null
     this.initEvent()
   }
@@ -68,6 +68,7 @@ export class IndexPage implements OnInit {
         this.currentBooking = response;
       }
     )
+    this.presentLoading();
     setTimeout(() => {
       console.log(this.currentBooking)
       for (let i of this.currentBooking) {
@@ -84,6 +85,17 @@ export class IndexPage implements OnInit {
       this.eventSource = events
     }, 1500);
 
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
 }

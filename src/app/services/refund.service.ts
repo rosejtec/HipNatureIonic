@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { RefundReq } from '../models/refund-req';
+import { RefundRsq } from '../models/refund-rsq';
 import { CommonService } from './common.service';
 
 
@@ -20,18 +21,35 @@ const httpOptions = {
 
 export class RefundService {
 
+  private refundToView: RefundRsq;
+
   baseUrl: string = "/api/Refund";
 
   constructor(private httpClient: HttpClient, private commonService: CommonService) { }
 
-  doRefundService(bookingId: number): Observable<number> {
+  setRefundToView(value){
+    this.refundToView = value
+  }
+
+  getRefundToView(){
+    return this.refundToView;
+  }
+
+  doRefundService(bookingId: number, reason: string): Observable<number> {
     console.log("DoRefundService")
-    let refundreq: RefundReq = new RefundReq(this.commonService.getUsername(), this.commonService.getPassword(), bookingId)
+    let refundreq: RefundReq = new RefundReq(this.commonService.getUsername(), this.commonService.getPassword(), bookingId, reason)
     console.log(refundreq)
     return this.httpClient.put<number>(this.baseUrl, refundreq, httpOptions).pipe
       (
         catchError(this.handleError)
       );
+  }
+
+  retrieveRefund():Observable<RefundRsq[]>{
+    return this.httpClient.get<RefundRsq[]>(this.baseUrl +"/retrieveMyRefunds?username=" + this.commonService.getUsername() + "&password=" + this.commonService.getPassword()).pipe
+    (
+      catchError(this.handleError)
+    )
   }
 
   private handleError(error: HttpErrorResponse) {

@@ -99,6 +99,10 @@ const routes: Routes = [
   },  {
     path: 'update-my-profile',
     loadChildren: () => import('./pages/update-my-profile/update-my-profile.module').then( m => m.UpdateMyProfilePageModule)
+  },
+  {
+    path: 'view-refund-details-modal',
+    loadChildren: () => import('./pages/view-refund-details-modal/view-refund-details-modal.module').then( m => m.ViewRefundDetailsModalPageModule)
   }
 
 

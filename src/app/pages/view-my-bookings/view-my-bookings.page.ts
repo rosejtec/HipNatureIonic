@@ -63,6 +63,7 @@ export class ViewMyBookingsPage implements OnInit {
       component: ViewBookingDetailModalPage,
     });
     modal.onWillDismiss().then(() => {
+
     });
     modal.present();
 
@@ -73,6 +74,8 @@ export class ViewMyBookingsPage implements OnInit {
       component: RefundModalPage,
     });
     modal.onWillDismiss().then(() => {
+      let i = this.myBooking.indexOf(value);
+      this.myBooking.splice(i, 1);
     });
     modal.present();
   }

@@ -1,9 +1,76 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Transaction History</ion-title>
+    <ion-title>Transaction and Refund History</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <ion-title style="padding-top: 10px;">
+    Transaction History
+  </ion-title>
+  <ion-card>
+    <ion-grid>
+      <ion-row style="background-color: #cdcfd6;text-align: center;">
+        <ion-col>
+          <b>Refund Id</b>
+        </ion-col>
+        <ion-col>
+          <b>Refund Date</b>
+        </ion-col>
+        <ion-col >
+          <b>Refund Value</b>
+        </ion-col>
+        <ion-col>
+          <b>Reason</b>
+        </ion-col>
+        <ion-col>
+          <b>Session Name</b>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let p of myRefunds; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;">
+        <ion-col> {{p.refundId}} </ion-col>
+        <ion-col> {{p.refundDate}} </ion-col>
+        <ion-col> {{p.refundValue}}</ion-col>
+        <ion-col> {{p.reason}}</ion-col>
+        <ion-col> {{p.bookingRefunded.sessionName}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
+</ion-content>
+
+<ion-content>
+  <ion-title  style="padding-top: 10px;">
+    Refund History
+  </ion-title>
+  <ion-card>
+    <ion-grid>
+      <ion-row style="background-color: #cdcfd6;text-align: center;">
+        <ion-col>
+          <b>Refund Id</b>
+        </ion-col>
+        <ion-col>
+          <b>Refund Date</b>
+        </ion-col>
+        <ion-col >
+          <b>Refund Value</b>
+        </ion-col>
+        <ion-col>
+          <b>Reason</b>
+        </ion-col>
+        <ion-col>
+          <b>Session Name</b>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let p of myRefunds; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;" (click) = "openBookingDetail(p)">
+        <ion-col> {{p.refundId}} </ion-col>
+        <ion-col> {{p.refundDate}} </ion-col>
+        <ion-col> {{p.refundValue}}</ion-col>
+        <ion-col> {{p.reason}}</ion-col>
+        <ion-col> {{p.bookingRefunded.sessionName}}</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-card>
 </ion-content>

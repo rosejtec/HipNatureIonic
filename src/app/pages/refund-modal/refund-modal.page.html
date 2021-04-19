@@ -40,5 +40,15 @@
     </ion-label>
     {{selectedBookingToView.instructor}}
   </ion-item>
+  <ion-item>
+    <ion-label>
+      Reason: 
+    </ion-label>
+    <ion-select id="reason" name="reason" placeholder="Select One" required="false" multiple="false"  [(ngModel)]="refundEntity.reason" #reason="ngModel"> 
+      <ion-select-option value="Unable to make it">Unable to make it</ion-select-option>
+      <ion-select-option value="Not Interested">Not Interested</ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-button expand="block" (click)="doRefund()">Refund</ion-button>
 </ion-content>
