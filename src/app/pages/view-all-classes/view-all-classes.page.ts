@@ -29,8 +29,21 @@ export class ViewAllClassesPage implements OnInit {
     this.classService.retrieveAllClasses().subscribe(
       response => {
           let classes: Class[] = response;
+          for (let i = 0; i < classes.length; i++) {
+          
+            this.classService.getPartnerByClass(classes[i].classId).subscribe(
+              (response) => {
+                classes[i].partner =  response
+                console.log(  classes[i].partner)
+              },
+              (error) => {
+                console.log('********** ViewClassPartnerPage.ts: ' + error)
+              },
+            );
+          }
           this.backupAllClasses=classes
           this.filterClass = classes
+
       },
       error => {
           console.log(error);

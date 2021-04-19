@@ -10,7 +10,7 @@ export class Partner {
   password: string | undefined
   profilePicString: string | undefined
   images: string[] | undefined
-
+   
   constructor(
     PartnerEntityId?: string,
     partnerEntityName?: string,
