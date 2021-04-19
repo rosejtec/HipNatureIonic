@@ -4,23 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!commonService.getIsLogin()">
-  <ion-list>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Welcome to Hipnature</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>
-        </p>
-        <ul style="margin-left: 20px;">
-          <li>Welcome to Hipnature</li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-  <app-register>
-  </app-register>
+<ion-content *ngIf="!commonService.getIsLogin()" style="width: 90%; height: 90%;">
+ 
+  <ion-card>
+    <ion-img src="../../assets/HomePagePic.png" (click) = "openRegisterPage()"></ion-img>
+  </ion-card>
 </ion-content>
 <ion-content *ngIf="commonService.getIsLogin()">
 

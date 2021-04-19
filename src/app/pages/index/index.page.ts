@@ -4,6 +4,7 @@ import { CalendarComponent } from 'ionic2-calendar';
 import { RetrieveBookingsByCusReq } from 'src/app/models/retrieve-bookings-by-cus-req';
 import { MybookingsService } from 'src/app/services/mybookings.service';
 import { CommonService } from '../../services/common.service';
+import { RegisterPage } from '../register/register.page';
 import { ViewBookingDetailModalPage } from '../view-booking-detail-modal/view-booking-detail-modal.page';
 
 @Component({
@@ -96,6 +97,17 @@ export class IndexPage implements OnInit {
 
     const { role, data } = await loading.onDidDismiss();
     console.log('Loading dismissed!');
+  }
+
+  async openRegisterPage() {
+    let modal = await this.modalCtrl.create({
+      component: RegisterPage,
+    });
+    modal.onWillDismiss().then(() => {
+
+    });
+    modal.present();
+
   }
 
 }

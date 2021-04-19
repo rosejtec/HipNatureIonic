@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
 import { RefundRsq } from 'src/app/models/refund-rsq';
+import { TransactionRequest } from 'src/app/models/transaction-request';
 import { MybookingsService } from 'src/app/services/mybookings.service';
 import { RefundService } from 'src/app/services/refund.service';
+import { TransactionsService } from 'src/app/services/transactions.service';
 import { ViewBookingDetailModalPage } from '../view-booking-detail-modal/view-booking-detail-modal.page';
 import { ViewRefundDetailsModalPage } from '../view-refund-details-modal/view-refund-details-modal.page';
 
@@ -14,14 +16,16 @@ import { ViewRefundDetailsModalPage } from '../view-refund-details-modal/view-re
 export class MyTransactionHistoryPage implements OnInit {
 
   myRefunds: RefundRsq[];
+  myTransaction: TransactionRequest[];
   error: boolean;
   resultSuccess: boolean;
   errorMessage: string;
 
-  constructor(public loadingController: LoadingController, private refundService: RefundService, private modalCtrl: ModalController, private alertController: AlertController, private navCtrl: NavController) {
+  constructor(private transactionService: TransactionsService,public loadingController: LoadingController, private refundService: RefundService, private modalCtrl: ModalController, private alertController: AlertController, private navCtrl: NavController) {
     this.error = false;
     this.resultSuccess = false;
     this.myRefunds = null;
+    this.myTransaction = null;
   }
 
 
@@ -33,14 +37,26 @@ export class MyTransactionHistoryPage implements OnInit {
     });
     await loading.present();
     this.getMyRefundList();
+    this.getMyTransactionList();
   }
   getMyRefundList(){
     this.refundService.retrieveRefund().subscribe(
       response => {
         this.myRefunds = response
-        console.log(response)
       }
     )
+  }
+
+  getMyTransactionList(){
+    this.transactionService.retrieveTransaction().subscribe(
+      response =>{
+        this.myTransaction = response
+      }
+    )
+  }
+  maskValueCCNumber(p) {
+    var masked = '************' + p.ccNumber.substr(-4);
+    return masked;
   }
   async openBookingDetail(value) {
     this.refundService.setRefundToView(value);

@@ -13,30 +13,29 @@
     <ion-grid>
       <ion-row style="background-color: #cdcfd6;text-align: center;">
         <ion-col>
-          <b>Refund Id</b>
+          <b>Transaction Id</b>
         </ion-col>
         <ion-col>
-          <b>Refund Date</b>
+          <b>Transaction Date</b>
         </ion-col>
         <ion-col >
-          <b>Refund Value</b>
+          <b>Purchase Price</b>
         </ion-col>
         <ion-col>
-          <b>Reason</b>
+          <b>Purchase Type</b>
         </ion-col>
         <ion-col>
-          <b>Session Name</b>
+          <b>Card Number</b>
         </ion-col>
       </ion-row>
-      <ion-row *ngFor="let p of myRefunds; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;">
-        <ion-col> {{p.refundId}} </ion-col>
-        <ion-col> {{p.refundDate}} </ion-col>
-        <ion-col> {{p.refundValue}}</ion-col>
-        <ion-col> {{p.reason}}</ion-col>
-        <ion-col> {{p.bookingRefunded.sessionName}}</ion-col>
+      <ion-row *ngFor="let p of myTransaction; index as i" style="border: 2px solid #aeb7ca; padding-top: 10px; text-align: center;">
+        <ion-col> {{p.transactionId}} </ion-col>
+        <ion-col> {{p.transactionDate}} </ion-col>
+        <ion-col> {{p.price}}</ion-col>
+        <ion-col> {{p.planType}}</ion-col>
+        <ion-col>{{maskValueCCNumber(p)}}</ion-col>
       </ion-row>
     </ion-grid>
-
   </ion-card>
 </ion-content>
 
