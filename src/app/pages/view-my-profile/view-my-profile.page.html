@@ -7,8 +7,14 @@
       </ion-button>
     </ion-buttons>
     <ion-title>&nbsp;</ion-title>
-    <ion-buttons slot="end"> 
-      <ion-button float-right  fill="outline" slot="end" (click)="editCustomer($event)">Edit</ion-button>
+    <ion-buttons slot="end">
+      <ion-button
+        float-right
+        fill="outline"
+        slot="end"
+        (click)="editCustomer($event)"
+        >Edit</ion-button
+      >
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,7 +23,7 @@
   <div class="card">
     <div class="header">
       <div class="avatar">
-        <img src="{{profile?.image}}" alt="">
+        <img src="{{profile?.image}}" alt="" />
       </div>
     </div>
   </div>
@@ -26,26 +32,33 @@
     <div class="user-meta ion-text-center">
       <h3 class="playername">{{currentCustomer.customerName}}</h3>
       <h5 class="country">{{currentCustomer.email}}</h5>
-      <h6 class="ranking">Current Category: <ion-chip>
-        <ion-label>{{currentCustomer.customerTypeEnum}}</ion-label>
+      <h6 class="ranking">
+        Current Category:
+        <ion-chip>
+          <ion-label>{{currentCustomer.customerTypeEnum}}</ion-label>
         </ion-chip>
       </h6>
     </div>
-    <ion-button expand="full" color="primary"  (click)="booking($event)">View My Booking</ion-button>
-    <ion-button expand="full" color="secondary" (click)="plan($event)">View My Payment Details</ion-button>
+    <ion-button expand="full" color="primary" (click)="booking($event)"
+      >View My Booking</ion-button
+    >
+    <ion-button expand="full" color="secondary" (click)="plan($event)"
+      >View My Payment Details</ion-button
+    >
   </div>
+  <!-- <div class="">
+    <ion-item>
+      <ion-label><b>NRIC/StudentCARD</b></ion-label>
+    </ion-item>
 
-  <h2>File Upload</h2>
+  <img *ngIf="showImage" src="http://localhost:8080/HipNatureRS/uploadedFiles/{{currentCustomer.email}}" />
 
-  <!-- <img *ngIf="showImage" src="http://localhost:8080/HipNatureRS/Resources/uploadedFiles/{{fileName}}" /> -->
-  <img *ngIf="fileToUpload" [src]="fileToUpload"/>
+  <br />
 
-  <br/><hr/><br/>
-
-  <ion-button expand="full">
+  <ion-button *ngIf="!showImage" expand="full">
     <ion-icon lazy="true" slot="start" name="image"></ion-icon>
     <ion-label slot="end">Upload Image</ion-label>
-  <input type="file" id="file" (change)="handleFileInput($event)">
-</ion-button>
-
+    <input type="file" id="file" (change)="handleFileInput($event)" />
+  </ion-button>
+  </div> -->
 </ion-content>

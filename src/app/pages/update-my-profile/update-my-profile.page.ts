@@ -6,6 +6,7 @@ import { CommonService } from '../../services/common.service';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../models/customer';
 import { CustomerTypeEnum } from '../../models/customer-type-enum.enum';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 @Component({
   selector: 'app-update-my-profile',
   templateUrl: './update-my-profile.page.html',
@@ -19,16 +20,21 @@ export class UpdateMyProfilePage implements OnInit {
   resultError: boolean;
   message: string;
   submitted:boolean;
+  showImage:boolean;
+  useCustomUpload: boolean
+  fileName: String | null
+  fileToUpload: File | null
 
-  constructor(private router: Router,private commonService: CommonService, private customerService: CustomerService) {
+  constructor( private fileUploadService: FileUploadService,private router: Router,private commonService: CommonService, private customerService: CustomerService) {
     this.error = false;
     this.resultSuccess = false;
     this.submitted = false;
     this.resultSuccess = false;
     this.currentCustomer = this.commonService.getCurrentCustomer();
-    
-
-
+    this.showImage=false
+    this.useCustomUpload = true
+    this.fileName = null
+    this.fileToUpload = null
   }
 
 
@@ -36,6 +42,28 @@ export class UpdateMyProfilePage implements OnInit {
     console.log(this.commonService.getCurrentCustomer())
     this.currentCustomer = this.commonService.getCurrentCustomer();
     console.log(this.currentCustomer)
+
+    this.refreshImage();
+  }
+
+  refreshImage() {
+    let url = 'http://localhost:8080/HipNatureRS/uploadedFiles/' + this.commonService.getCurrentCustomer().email
+
+    this.checkImage(url, (err) => {
+      this.showImage = true
+      console.log(err)
+    })
+    console.log(this.showImage)
+  }
+  checkImage(url, callback) {
+    let image = new Image()
+    image.src = url
+    image.onerror = function (evt) {
+      callback(false)
+    }
+    image.onload = function (evt) {
+      callback(true)
+    }
   }
 
   create(updateCustomer: NgForm) {
@@ -79,6 +107,28 @@ export class UpdateMyProfilePage implements OnInit {
     }
   }
 
+  handleFileInput(event: any) {
+    this.fileToUpload = event.target.files.item(0)
+
+    if (this.fileToUpload != null) {
+      this.fileName = this.fileToUpload.name
+
+      this.fileUploadService.uploadFile(this.fileToUpload).subscribe(
+        (response) => {
+          this.showImage = true
+          this.refreshImage()
+          console.log(
+            '********** FileUploadComponent.ts: File uploaded successfully: ' +
+              response.status,
+          )
+        },
+        (error) => {
+          this.showImage = true
+          console.log('********** FileUploadComponent.ts: ' + error)
+        },
+      )
+    }
+  }
   back() {
     this.router.navigate(["/view-my-profile"]);
   }
